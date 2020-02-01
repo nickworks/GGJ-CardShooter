@@ -465,7 +465,18 @@ MonoBehaviour:
     m_ActionId: 8ce1b7e6-66fe-473f-9992-b3ed17f92bb3
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 974355143}
+        m_MethodName: OnLookStick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: fa1b377d-02eb-4dbc-bb03-0f63c4ddedc1
     m_ActionName: Player/Look
   - m_PersistentCalls:
@@ -473,7 +484,18 @@ MonoBehaviour:
     m_ActionId: 413ed1f9-475c-4a5f-91f0-c2bb24b479e0
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 974355143}
+        m_MethodName: OnLookMouse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 76023531-a6f6-4967-9406-7b89ca80073d
     m_ActionName: Player/LookMouse[/Mouse/delta]
   - m_PersistentCalls:
@@ -663,7 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30059dc36b736e04e9d163ee96ee2a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 974355141}
 --- !u!1 &1930037260
 GameObject:
   m_ObjectHideFlags: 0

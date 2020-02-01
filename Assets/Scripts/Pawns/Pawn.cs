@@ -30,8 +30,8 @@ public class Pawn : MonoBehaviour
 
         body.SimpleMove(dis);
     }
-    public void SetAim(float angle) {
-
+    public void LookAim(float angle) {
+        transform.rotation = Quaternion.Euler(0, angle, 0);
     }
     public void Attack() {
 
