@@ -6,6 +6,8 @@ using UnityEngine;
 public class Pawn : MonoBehaviour
 {
     public float moveSpeed = 3;
+    public Projectile projectilePrefab;
+
 
     CharacterController body;
 
@@ -37,7 +39,14 @@ public class Pawn : MonoBehaviour
         lookDirection = Quaternion.Euler(0, angle, 0);
     }
     public void Attack() {
-
+        ShootProjectile();
     }
     #endregion
+
+    void ShootProjectile() {
+
+        Projectile projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+        projectile.Init();
+
+    }
 }

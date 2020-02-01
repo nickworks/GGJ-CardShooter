@@ -480,7 +480,18 @@ MonoBehaviour:
     m_ActionId: fa1b377d-02eb-4dbc-bb03-0f63c4ddedc1
     m_ActionName: Player/Look
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 974355137}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 413ed1f9-475c-4a5f-91f0-c2bb24b479e0
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -542,6 +553,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 77c003f3-16d6-4d95-9e83-e231fe7a2c87
     m_ActionName: UI/TrackedDeviceSelect
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a51f2008-6365-4bb5-b86e-eb1547b75cec
+    m_ActionName: Player/TomePrev[/Keyboard/q,/XInputControllerWindows/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b42aa84d-d4a9-444b-a0f5-c3a63550f1a3
+    m_ActionName: Player/TomeNext[/Keyboard/e,/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
