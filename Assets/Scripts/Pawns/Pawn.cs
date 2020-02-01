@@ -6,7 +6,10 @@ using UnityEngine;
 public class Pawn : MonoBehaviour
 {
     public float moveSpeed = 3;
+
     CharacterController body;
+
+    Quaternion lookDirection = Quaternion.identity;
 
     void Start()
     {
@@ -16,7 +19,7 @@ public class Pawn : MonoBehaviour
     
     void Update()
     {
-        
+        transform.rotation = MathStuff.Damp(transform.rotation, lookDirection, .05f);
     }
 
     #region API (call these funcs from controller classes):
@@ -31,7 +34,7 @@ public class Pawn : MonoBehaviour
         body.SimpleMove(dis);
     }
     public void LookAim(float angle) {
-        transform.rotation = Quaternion.Euler(0, angle, 0);
+        lookDirection = Quaternion.Euler(0, angle, 0);
     }
     public void Attack() {
 

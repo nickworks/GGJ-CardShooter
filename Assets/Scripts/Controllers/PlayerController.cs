@@ -35,13 +35,16 @@ public class PlayerController : Controller
     }
     public void OnLookStick(InputAction.CallbackContext ctxt) {
         Vector2 look = ctxt.ReadValue<Vector2>();
-        lookDirection = Mathf.Rad2Deg * Mathf.Atan2(look.x, look.y);
+        float threshold = 0.5f;
+        if (look.sqrMagnitude > threshold * threshold) {
+            lookDirection = Mathf.Rad2Deg * Mathf.Atan2(look.x, look.y);
+        }
     }
     public void OnLookMouse(InputAction.CallbackContext ctxt) {
         if (cam == null) return;
 
         Vector3 mouse = ctxt.ReadValue<Vector2>();
-        
+
         Plane plane = new Plane(Vector3.up, transform.position);
         Ray ray = cam.ScreenPointToRay(mouse);
 
