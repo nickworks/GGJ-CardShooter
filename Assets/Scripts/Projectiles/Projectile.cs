@@ -6,8 +6,16 @@ public class Projectile : MonoBehaviour
 {
     public float speed = 10;
     public float lifespan = 2;
-    public float baseDamage;
+
+
+    /// <summary>
+    /// The Damage applyed to the actor hitby this projectile, after card modifications
+    /// </summary>
     public float damage;
+
+    /// <summary>
+    /// The Pawn that is responsible for the creation of this projectile
+    /// </summary>
     GameObject owner;
 
     Vector3 velocity;
@@ -20,11 +28,9 @@ public class Projectile : MonoBehaviour
     /// <summary>
     /// Use this to pass info from Pawn to Projectile.
     /// </summary>
-    public void Init(GameObject owner, float baseDamage) {
+    public void Init(GameObject owner) {
         // TODO
         this.owner = owner;
-        this.baseDamage = baseDamage;
-        damage = baseDamage;
     }
 
     // Update is called once per frame
@@ -49,6 +55,12 @@ public class Projectile : MonoBehaviour
     }
     */
 
+    //some refactoring may be in order here do decuple damage calculation
+
+    /// <summary>
+    /// We hit something! This applys damage and thn destroys this projectile if relevent
+    /// </summary>
+    /// <param name="other">the "other" colider this game object has impacted</param>
     private void OnTriggerEnter(Collider other)
     {
        //print("Collision " + owner);
@@ -62,6 +74,7 @@ public class Projectile : MonoBehaviour
             HandleDeath();
         }
     }
+
 
     void HandleDeath() {
 

@@ -102,7 +102,7 @@ public class Card {
     }
 
     /// <summary>
-    /// 
+    /// Should be called when a card is added to a tome. This is indended to facilitate passive modifyers to speed or defence 
     /// </summary>
     public void OnTomeAddition() { 
     
@@ -110,7 +110,7 @@ public class Card {
     }
 
     /// <summary>
-    /// 
+    /// Should be callled when a card is removed from a tome durring normal play. This is indended to facilitate passive modifyers to speed or defence 
     /// </summary>
     public void OnDestruction() { 
     

@@ -6,7 +6,9 @@ using UnityEngine;
 public class Pawn : MonoBehaviour
 {
     public float moveSpeed = 3;
+
     public float health = 100;
+
     public Projectile projectilePrefab;
 
     CharacterController body;
@@ -20,7 +22,6 @@ public class Pawn : MonoBehaviour
     void Start()
     {
         body = GetComponent<CharacterController>();
-
     }
     
     void Update()
@@ -64,18 +65,22 @@ public class Pawn : MonoBehaviour
     }
     #endregion
 
-
+    //this is currently called by the projectile hitting this object. I do not know if that is consistent with the player controller design pattern
+    /// <summary>
+    /// applys damage to the pawn
+    /// </summary>
+    /// <param name="damage">The damage to be reducted from this pawn's health</param>
     public void ApplyDamage(float damage) {
         health -= damage;
         print("Ouch! My health is now just:" + health);
     }
-    
+   
     void ShootProjectile() {
 
         Tome tome = CurrentTome();
 
         Projectile projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
-        projectile.Init(this.gameObject,tomes[currentTomeIndex].tomeBaseDamage);
+        projectile.Init(this.gameObject);
 
         tome.ModifyProjectile(projectile);
     }

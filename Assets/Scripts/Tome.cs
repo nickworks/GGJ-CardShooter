@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Tome
 {
+    /// <summary>
+    /// The base damage of this tome, projectiles will modify this falue in order to calculate their final damage output
+    /// </summary>
     public float tomeBaseDamage = 3; 
     
     public static Tome Random() {
@@ -33,6 +36,7 @@ public class Tome
     /// The cards held within the tome.
     /// </summary>
     public List<Card> cards = new List<Card>();
+
 
     /// <summary>
     /// Apply the effects of each card to a projectile.

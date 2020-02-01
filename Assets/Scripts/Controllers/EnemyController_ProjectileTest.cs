@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// This is just a shell for testing projectiles
+/// This is just a shell for testing projectiles, it spinns and shoots
 /// </summary>
 public class EnemyController_ProjectileTest : Controller
 {
@@ -13,13 +13,22 @@ public class EnemyController_ProjectileTest : Controller
     /// </summary>
     Pawn pawn;
 
-    int timerSet = 3;
+    /// <summary>
+    /// how long in seconds between shots. Frame rate dependent
+    /// </summary>
+    public int timerSet = 3;
     int timer = 0;
 
+    /// <summary>
+    /// should th epawn spin while shooting
+    /// </summary>
     public bool rotate;
 
     //float angle = 0;
-    float anglMod = 25;
+    /// <summary>
+    /// How far to spin in between shots
+    /// </summary>
+    public float anglMod = 25;
     float anglemax = 360;
 
     // Start is called before the first frame update
@@ -40,6 +49,9 @@ public class EnemyController_ProjectileTest : Controller
         timer--;
     }
 
+    /// <summary>
+    /// Rotate the pawn a set interval if that is desierable. Ths is called after each shot is fired.
+    /// </summary>
     void Rotate() {
 
         if (rotate)
