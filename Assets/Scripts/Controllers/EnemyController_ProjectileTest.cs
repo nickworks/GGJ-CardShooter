@@ -16,34 +16,45 @@ public class EnemyController_ProjectileTest : Controller
     int timerSet = 3;
     int timer = 0;
 
+    public bool rotate;
+
     //float angle = 0;
     float anglMod = 25;
     float anglemax = 360;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         timerSet *= 60;
         pawn = GetComponent<Pawn>();
         pawn.PickupTome(Tome.Authored(new Card.Effect[] { Card.Effect.None } ));
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if (timer <= 0) {
             pawn.Attack();
-            float newRot = transform.rotation.eulerAngles.y + anglMod;
-            print(newRot);
-            pawn.LookAim(newRot);
-            
             timer = timerSet;
-            
-            if (transform.rotation.y > anglemax) {
+            Rotate();
+        }
+
+        timer--;
+    }
+
+    void Rotate() {
+
+        if (rotate)
+        {
+            float newRot = transform.rotation.eulerAngles.y + anglMod;
+            // print(newRot);
+            pawn.LookAim(newRot);
+
+           
+
+            if (transform.rotation.y > anglemax)
+            {
                 pawn.LookAim(0);
             }
         }
 
-        timer--;
     }
 }

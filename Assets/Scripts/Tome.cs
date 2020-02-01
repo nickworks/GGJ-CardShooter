@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Tome
 {
+    public float tomeBaseDamage = 3; 
+    
     public static Tome Random() {
         Tome tome = new Tome();
         tome.cards.Add(Card.Random());

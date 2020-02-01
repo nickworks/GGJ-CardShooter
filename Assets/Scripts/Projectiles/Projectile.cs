@@ -6,6 +6,9 @@ public class Projectile : MonoBehaviour
 {
     public float speed = 10;
     public float lifespan = 2;
+    public float baseDamage;
+    public float damage;
+    GameObject owner;
 
     Vector3 velocity;
     float age = 0;
@@ -17,8 +20,11 @@ public class Projectile : MonoBehaviour
     /// <summary>
     /// Use this to pass info from Pawn to Projectile.
     /// </summary>
-    public void Init() {
+    public void Init(GameObject owner, float baseDamage) {
         // TODO
+        this.owner = owner;
+        this.baseDamage = baseDamage;
+        damage = baseDamage;
     }
 
     // Update is called once per frame
@@ -29,7 +35,36 @@ public class Projectile : MonoBehaviour
         transform.position += velocity * Time.deltaTime;
         age += Time.deltaTime;
         if(age > lifespan) {
-            Destroy(gameObject);
+            HandleDeath();
         }
+    }
+
+    /*
+    void OnCollisionEnter(Collision collision) {
+        print("Collision");
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            Debug.DrawRay(contact.point, contact.normal, Color.white);
+        }
+    }
+    */
+
+    private void OnTriggerEnter(Collider other)
+    {
+       //print("Collision " + owner);
+        if (other.gameObject != owner) {
+            //print("hit");
+            Pawn target = other.gameObject.GetComponent<Pawn>();
+            if (target != null) {
+                target.ApplyDamage(damage);
+            }
+
+            HandleDeath();
+        }
+    }
+
+    void HandleDeath() {
+
+        Destroy(gameObject);
     }
 }

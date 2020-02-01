@@ -6,6 +6,7 @@ using UnityEngine;
 public class Pawn : MonoBehaviour
 {
     public float moveSpeed = 3;
+    public float health = 100;
     public Projectile projectilePrefab;
 
     CharacterController body;
@@ -13,6 +14,8 @@ public class Pawn : MonoBehaviour
 
     List<Tome> tomes = new List<Tome>();
     int currentTomeIndex = 0;
+
+
 
     void Start()
     {
@@ -61,12 +64,18 @@ public class Pawn : MonoBehaviour
     }
     #endregion
 
+
+    public void ApplyDamage(float damage) {
+        health -= damage;
+        print("Ouch! My health is now just:" + health);
+    }
+    
     void ShootProjectile() {
 
         Tome tome = CurrentTome();
 
         Projectile projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
-        projectile.Init();
+        projectile.Init(this.gameObject,tomes[currentTomeIndex].tomeBaseDamage);
 
         tome.ModifyProjectile(projectile);
     }
