@@ -61,10 +61,10 @@ public class Pawn : MonoBehaviour
     void ShootProjectile() {
 
         Tome tome = CurrentTome();
-        // TODO: consult the current tome!!
 
         Projectile projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
         projectile.Init();
 
+        tome.ModifyProjectile(projectile);
     }
 }

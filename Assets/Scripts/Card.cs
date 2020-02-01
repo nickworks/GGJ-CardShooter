@@ -35,6 +35,10 @@ public class Card {
 
     Effect effect = Effect.None;
 
+    /// <summary>
+    /// Apply the effects of this card to a projectile.
+    /// </summary>
+    /// <param name="projectile">The projectile to modify.</param>
     public void ModifyProjectile(Projectile projectile) {
         switch (effect) {
             case Effect.None:
