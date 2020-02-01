@@ -10,8 +10,11 @@ public class Pawn : MonoBehaviour
 
 
     CharacterController body;
-
     Quaternion lookDirection = Quaternion.identity;
+
+    List<Tome> tomes = new List<Tome>();
+    int currentTomeIndex = 0;
+
 
     void Start()
     {
@@ -32,7 +35,6 @@ public class Pawn : MonoBehaviour
     public void Move(Vector2 dir) {
 
         Vector3 dis = new Vector3(dir.x, 0, dir.y) * moveSpeed;
-
         body.SimpleMove(dis);
     }
     public void LookAim(float angle) {
@@ -41,9 +43,25 @@ public class Pawn : MonoBehaviour
     public void Attack() {
         ShootProjectile();
     }
+    public void NextTome() {
+        if (++currentTomeIndex >= tomes.Count) currentTomeIndex = 0;
+    }
+    public void PrevTome() {
+        if (--currentTomeIndex < 0) currentTomeIndex = tomes.Count - 1;
+    }
+    public Tome CurrentTome() {
+        
+        if (currentTomeIndex < 0) return new Tome(); // empty tome
+        if (currentTomeIndex >= tomes.Count) return new Tome(); // empty tome
+        return tomes[currentTomeIndex] ?? new Tome();
+
+    }
     #endregion
 
     void ShootProjectile() {
+
+        Tome tome = CurrentTome();
+        // TODO: consult the current tome!!
 
         Projectile projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
         projectile.Init();

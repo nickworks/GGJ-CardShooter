@@ -411,6 +411,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  projectilePrefab: {fileID: 1232235381016309722, guid: 5aa9cad8f82f8c145bd517e3f0d887ca,
+    type: 3}
 --- !u!114 &974355143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,12 +483,12 @@ MonoBehaviour:
     m_ActionName: Player/Look
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 974355137}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 974355143}
+        m_MethodName: OnFire
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -617,7 +619,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 896d1b5430ce5bf4bb19f9e53247ba84, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
