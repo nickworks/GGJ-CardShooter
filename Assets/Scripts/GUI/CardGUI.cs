@@ -1,9 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CardGUI : MonoBehaviour {
+
+    [System.Serializable]
+    public struct EffectSprites {
+        public Card.Effect cardEffect;
+        public Sprite sprite;
+    }
+
+    public EffectSprites[] spritesForCardEffects;
+
+    public Image imgBackSprite;
 
     Quaternion targetRotation;
     Vector2 targetPosition;
@@ -11,28 +22,44 @@ public class CardGUI : MonoBehaviour {
     float delay = 0;
 
     RectTransform rt;
+    float timeSinceLastAnim = 0;
+
     void Start() {
         rt = transform as RectTransform;
+        MakeAllTheTextsOneSided(); // oof
+    }
+    void MakeAllTheTextsOneSided() {
+        // the best I can do right now
+        TextMeshProUGUI[] txts = GetComponentsInChildren<TextMeshProUGUI>();
+        foreach (TextMeshProUGUI txt in txts) txt.enableCulling = true;
     }
     public void SetDepth(int i) {
         GetComponent<Canvas>().sortingOrder = i;
     }
-    public void Tint() {
-        GetComponent<Image>().color = Color.red;
+    public void Init(Card card) {
+        foreach(EffectSprites sprite in spritesForCardEffects) {
+            if(sprite.cardEffect == card.effect) {
+                imgBackSprite.sprite = sprite.sprite;
+                break;
+            }
+        }
     }
     void Update() {
         if (delay > 0) {
             delay -= Time.deltaTime;
             return;
         }
-        rt.localRotation = MathStuff.Damp(transform.localRotation, targetRotation, .01f);
-        rt.anchoredPosition = MathStuff.Damp(rt.anchoredPosition, targetPosition, .001f);
-        transform.localScale = Vector3.one * MathStuff.Damp(transform.localScale.x, targetScale, .01f);
+        if(timeSinceLastAnim < 10) timeSinceLastAnim += Time.deltaTime;
+        float percentRemainingAfter1Second = .001f;
+        rt.localRotation = MathStuff.Damp(transform.localRotation, targetRotation, percentRemainingAfter1Second);
+        rt.anchoredPosition = MathStuff.Damp(rt.anchoredPosition, targetPosition, percentRemainingAfter1Second);
+        transform.localScale = Vector3.one * MathStuff.Damp(transform.localScale.x, targetScale, percentRemainingAfter1Second);
     }
     public void AnimateTo(Vector3 pos, Quaternion rot, float scale, float delay) {
         targetPosition = pos;
         targetRotation = rot;
         targetScale = scale;
-        this.delay = delay;
+        if(timeSinceLastAnim > 0.5f) this.delay = delay;
+        timeSinceLastAnim = 0;
     }
 }

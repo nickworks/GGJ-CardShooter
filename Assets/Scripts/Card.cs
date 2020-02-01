@@ -30,10 +30,16 @@ public class Card {
     /// <returns>A random card</returns>
     public static Card Random() {
         // TODO
-        return new Card();
+
+        var possibleEffects = Effect.GetValues(typeof(Effect));
+        Effect effect = (Effect)possibleEffects.GetValue(UnityEngine.Random.Range(1, possibleEffects.Length));
+
+        return new Card() {
+            effect = effect
+        };
     }
 
-    Effect effect = Effect.None;
+    public Effect effect = Effect.None;
 
     /// <summary>
     /// Apply the effects of this card to a projectile.

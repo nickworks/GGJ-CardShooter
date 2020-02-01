@@ -22,11 +22,9 @@ public class CardManager : MonoBehaviour
 
     void Start() {
         bg = GetComponent<Image>();
-        AddCard(new Card());
-        AddCard(new Card());
-        AddCard(new Card());
-        AddCard(new Card());
-        AddCard(new Card());
+    }
+    public void SwitchTomes(Tome tome) {
+        AddCards(tome.cards.ToArray());
     }
     
     public void AddCards(Card[] cards) {
@@ -36,7 +34,7 @@ public class CardManager : MonoBehaviour
     }
     public void AddCard(Card card) {
         CardGUI newCard = Instantiate(cardGUIPrefab, transform);
-        // TODO: copy stats and stuff over to card GUI
+        newCard.Init(card); // give the gui a reference to the card data
         cards.Insert(0, newCard);
         PositionCards();
     }
@@ -104,7 +102,7 @@ public class CardManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             ChangeState((state == State.Inspect) ? State.Mini : State.Inspect);
 
-        if (Input.GetKeyDown(KeyCode.KeypadPlus)) AddCard(new Card());
+        if (Input.GetKeyDown(KeyCode.KeypadPlus)) AddCard(Card.Random());
         if (Input.GetKeyDown(KeyCode.KeypadMinus)) PopCard();
 
         float a = bg.color.a;

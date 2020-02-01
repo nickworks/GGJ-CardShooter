@@ -7,7 +7,7 @@ public class Tome
     /// <summary>
     /// The cards held within the tome.
     /// </summary>
-    List<Card> cards = new List<Card>();
+    public List<Card> cards = new List<Card>();
 
     /// <summary>
     /// Apply the effects of each card to a projectile.

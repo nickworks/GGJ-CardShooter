@@ -21,9 +21,16 @@ public class PlayerController : Controller {
     /// </summary>
     Vector2 moveAxis = Vector2.zero;
 
+    /// <summary>
+    /// The script that controls the GUI.
+    /// </summary>
+    CardManager gui;
+
     void Start() {
         pawn = GetComponent<Pawn>();
         cam = Camera.main;
+        gui = GameObject.FindObjectOfType<CardManager>();
+        UpdateHUD();
     }
     /// <summary>
     /// Tick
@@ -82,5 +89,17 @@ public class PlayerController : Controller {
             float lookYaw = Mathf.Rad2Deg * Mathf.Atan2(dis.x, dis.z);
             pawn.LookAim(lookYaw);
         }
+    }
+
+    public void OnNextTome(InputAction.CallbackContext ctxt) {
+        pawn.NextTome();
+        UpdateHUD();
+    }
+    public void OnPrevTome(InputAction.CallbackContext ctxt) {
+        pawn.PrevTome();
+        UpdateHUD();
+    }
+    void UpdateHUD() {
+        gui.SwitchTomes(pawn.CurrentTome());
     }
 }
