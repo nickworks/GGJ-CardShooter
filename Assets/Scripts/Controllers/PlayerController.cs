@@ -95,6 +95,11 @@ public class PlayerController : Controller {
         }
     }
 
+    public Pawn GetPawn()
+    {
+        return pawn;
+    }
+
     public void OnNextTome(InputAction.CallbackContext ctxt) {
         if (ctxt.phase != InputActionPhase.Started) return;
         pawn.NextTome();
