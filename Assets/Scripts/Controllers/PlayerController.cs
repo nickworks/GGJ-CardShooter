@@ -30,6 +30,10 @@ public class PlayerController : Controller {
         pawn = GetComponent<Pawn>();
         cam = Camera.main;
         gui = GameObject.FindObjectOfType<CardManager>();
+
+        pawn.PickupTome(Tome.Random());
+        pawn.PickupTome(Tome.Random());
+
         UpdateHUD();
     }
     /// <summary>

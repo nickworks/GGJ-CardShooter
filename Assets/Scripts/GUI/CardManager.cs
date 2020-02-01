@@ -24,7 +24,14 @@ public class CardManager : MonoBehaviour
         bg = GetComponent<Image>();
     }
     public void SwitchTomes(Tome tome) {
+        RemoveAllCards();
         AddCards(tome.cards.ToArray());
+    }
+    public void RemoveAllCards() {
+        foreach(CardGUI card in cards) {
+            Destroy(card.gameObject);
+        }
+        cards.Clear();
     }
     
     public void AddCards(Card[] cards) {

@@ -8,19 +8,17 @@ public class Pawn : MonoBehaviour
     public float moveSpeed = 3;
     public Projectile projectilePrefab;
 
-
     CharacterController body;
     Quaternion lookDirection = Quaternion.identity;
 
     List<Tome> tomes = new List<Tome>();
     int currentTomeIndex = 0;
 
-
     void Start()
     {
         body = GetComponent<CharacterController>();
-    }
 
+    }
     
     void Update()
     {
@@ -55,6 +53,11 @@ public class Pawn : MonoBehaviour
         if (currentTomeIndex >= tomes.Count) return new Tome(); // empty tome
         return tomes[currentTomeIndex] ?? new Tome();
 
+    }
+
+    public void PickupTome(Tome tome) {
+        currentTomeIndex = tomes.Count;
+        tomes.Add(tome);
     }
     #endregion
 

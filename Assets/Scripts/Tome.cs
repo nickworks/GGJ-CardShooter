@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Tome
 {
+    public static Tome Random() {
+        Tome tome = new Tome();
+        tome.cards.Add(Card.Random());
+        tome.cards.Add(Card.Random());
+        tome.cards.Add(Card.Random());
+        return tome;
+    }
+
     /// <summary>
     /// The cards held within the tome.
     /// </summary>
