@@ -38,6 +38,7 @@ public class PlayerController : Controller {
     /// </summary>
     /// <param name="ctxt"></param>
     public void OnMove(InputAction.CallbackContext ctxt) {
+        if (Game.isPaused) return;
         moveAxis = ctxt.ReadValue<Vector2>();
     }
     /// <summary>
@@ -45,7 +46,8 @@ public class PlayerController : Controller {
     /// </summary>
     /// <param name="ctxt"></param>
     public void OnFire(InputAction.CallbackContext ctxt) {
-        if(ctxt.phase == InputActionPhase.Started) pawn.Attack();
+        if (Game.isPaused) return;
+        if (ctxt.phase == InputActionPhase.Started) pawn.Attack();
     }
     /// <summary>
     /// When aiming with a controller stick,
@@ -53,6 +55,7 @@ public class PlayerController : Controller {
     /// </summary>
     /// <param name="ctxt"></param>
     public void OnLookStick(InputAction.CallbackContext ctxt) {
+        if (Game.isPaused) return;
         Vector2 look = ctxt.ReadValue<Vector2>();
         float threshold = 0.5f;
         if (look.sqrMagnitude > threshold * threshold) {
@@ -66,6 +69,7 @@ public class PlayerController : Controller {
     /// </summary>
     /// <param name="ctxt"></param>
     public void OnLookMouse(InputAction.CallbackContext ctxt) {
+        if (Game.isPaused) return;
         if (cam == null) return;
 
         Vector3 mouse = ctxt.ReadValue<Vector2>();

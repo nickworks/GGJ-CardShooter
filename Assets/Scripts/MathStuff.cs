@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 public class MathStuff {
-    public static float Damp(float a, float b, float percentLeftAfter1Second) {
-        return Lerp(a, b, 1 - Mathf.Pow(percentLeftAfter1Second, Time.deltaTime));
+    public static float Damp(float a, float b, float percentLeftAfter1Second, float dt = 0) {
+        if (dt == 0) dt = Time.deltaTime;
+        return Lerp(a, b, 1 - Mathf.Pow(percentLeftAfter1Second, dt));
     }
-    public static Vector3 Damp(Vector3 a, Vector3 b, float percentLeftAfter1Second) {
-        return Lerp(a, b, 1 - Mathf.Pow(percentLeftAfter1Second, Time.deltaTime));
+    public static Vector3 Damp(Vector3 a, Vector3 b, float percentLeftAfter1Second, float dt = 0) {
+        if (dt == 0) dt = Time.deltaTime;
+        return Lerp(a, b, 1 - Mathf.Pow(percentLeftAfter1Second, dt));
     }
-    public static Quaternion Damp(Quaternion a, Quaternion b, float percentLeftAfter1Second) {
-        return Lerp(a, b, 1 - Mathf.Pow(percentLeftAfter1Second, Time.deltaTime));
+    public static Quaternion Damp(Quaternion a, Quaternion b, float percentLeftAfter1Second, float dt = 0) {
+        if (dt == 0) dt = Time.deltaTime;
+        return Lerp(a, b, 1 - Mathf.Pow(percentLeftAfter1Second, dt));
     }
     public static float Lerp(float a, float b, float p) {
         return (b - a) * p + a;

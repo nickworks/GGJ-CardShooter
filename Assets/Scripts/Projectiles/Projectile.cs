@@ -24,6 +24,8 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Game.isPaused) return;
+
         transform.position += velocity * Time.deltaTime;
         age += Time.deltaTime;
         if(age > lifespan) {

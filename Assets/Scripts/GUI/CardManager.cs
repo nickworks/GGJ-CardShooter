@@ -16,8 +16,10 @@ public class CardManager : MonoBehaviour
 
     State state = State.Mini;
     List<CardGUI> cards = new List<CardGUI>(); // card index 0 should be on bottom
+    Image bg;
 
     void Start() {
+        bg = GetComponent<Image>();
         AddCard(new Card());
         AddCard(new Card());
         AddCard(new Card());
@@ -73,12 +75,20 @@ public class CardManager : MonoBehaviour
             cards[i].transform.SetParent(transform);
         }
     }
+    void ChangeState(State newState) {
+        state = newState;
+        Game.isPaused = (state == State.Inspect);
+        PositionCards();
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            state = (state == State.Inspect) ? State.Mini : State.Inspect;
-            PositionCards();
-        }
+        if (Input.GetKeyDown(KeyCode.Space))
+            ChangeState((state == State.Inspect) ? State.Mini : State.Inspect);
+        
+        float a = bg.color.a;
+        if (a < 0.6f && state == State.Inspect) a += 2 * Time.deltaTime;
+        if (a > 0.0f && state == State.Mini) a -= 2 * Time.deltaTime;
+        bg.color = new Color(0, 0, 0, a);
     }
 }
