@@ -27,4 +27,8 @@ public class MathStuff {
     public static Quaternion Lerp(Quaternion a, Quaternion b, float p) {
         return Quaternion.Lerp(a, b, p);
     }
+    public static float Map(float val, float min1, float max1, float min2, float max2) {
+        float p = (val - min1) / (max1 - min1);
+        return Lerp(min2, max2, p);
+    }
 }

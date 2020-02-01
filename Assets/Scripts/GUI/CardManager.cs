@@ -13,6 +13,8 @@ public class CardManager : MonoBehaviour
 
     public CardGUI cardGUIPrefab;
     public RectTransform areaLoadout;
+    public float cardScaleSmall = .01f;
+    public float cardScaleBig = .1f;
 
     State state = State.Mini;
     List<CardGUI> cards = new List<CardGUI>(); // card index 0 should be on bottom
@@ -35,8 +37,21 @@ public class CardManager : MonoBehaviour
     public void AddCard(Card card) {
         CardGUI newCard = Instantiate(cardGUIPrefab, transform);
         // TODO: copy stats and stuff over to card GUI
-        if (cards.Count == 0) newCard.Tint();
-        cards.Add(newCard);
+        cards.Insert(0, newCard);
+        PositionCards();
+    }
+    public void PopCard() {
+        LoseCardAt(cards.Count - 1);
+    }
+    public void DestroyCard() {
+        LoseCardAt(0);
+    }
+    void LoseCardAt(int index) {
+        if (cards.Count == 0) return;
+        if (index < 0) return;
+        if (index >= cards.Count) return;
+        Destroy(cards[index].gameObject);
+        cards.RemoveAt(index);
         PositionCards();
     }
     void PositionCards() {
@@ -59,8 +74,7 @@ public class CardManager : MonoBehaviour
         for (int i = 0; i < cards.Count; i++) {
             Vector3 pos = new Vector2(0, 0 + dy * i);
             Quaternion rot = Quaternion.Euler(0, 180, 90);
-            float scale = 1;
-            cards[i].AnimateTo(pos, rot, scale, (cards.Count - i) * .1f);
+            cards[i].AnimateTo(pos, rot, cardScaleSmall, (cards.Count - i) * .1f);
             cards[i].transform.SetParent(areaLoadout);
         }
     }
@@ -68,10 +82,14 @@ public class CardManager : MonoBehaviour
         float dx = 150;
         float x = -dx * (cards.Count - 1) / 2f;
         for (int i = 0; i < cards.Count; i++) {
-            Vector3 pos = new Vector2(x + dx * i, 0);
-            Quaternion rot = Quaternion.identity;
-            float scale = 2;
-            cards[i].AnimateTo(pos, rot, scale, i * .1f);
+            float percent = cards.Count == 1 ? .5f : i / (float)(cards.Count - 1);
+            
+            float y = Mathf.Sin(percent * 40) * 25;
+            y -= Mathf.Abs(.5f - percent) * 75 + 25;
+            Vector3 pos = new Vector2(x + dx * i, y);
+            float roll = MathStuff.Lerp(20, -20, percent);
+            Quaternion rot = Quaternion.Euler(0,0,roll);
+            cards[i].AnimateTo(pos, rot, cardScaleBig, i * .1f);
             cards[i].transform.SetParent(transform);
         }
     }
@@ -85,7 +103,10 @@ public class CardManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
             ChangeState((state == State.Inspect) ? State.Mini : State.Inspect);
-        
+
+        if (Input.GetKeyDown(KeyCode.KeypadPlus)) AddCard(new Card());
+        if (Input.GetKeyDown(KeyCode.KeypadMinus)) PopCard();
+
         float a = bg.color.a;
         if (a < 0.6f && state == State.Inspect) a += 2 * Time.deltaTime;
         if (a > 0.0f && state == State.Mini) a -= 2 * Time.deltaTime;
