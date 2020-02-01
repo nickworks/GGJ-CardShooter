@@ -96,10 +96,12 @@ public class PlayerController : Controller {
     }
 
     public void OnNextTome(InputAction.CallbackContext ctxt) {
+        if (ctxt.phase != InputActionPhase.Started) return;
         pawn.NextTome();
         UpdateHUD();
     }
     public void OnPrevTome(InputAction.CallbackContext ctxt) {
+        if (ctxt.phase != InputActionPhase.Started) return;
         pawn.PrevTome();
         UpdateHUD();
     }

@@ -43,6 +43,14 @@ public class CardManager : MonoBehaviour
         CardGUI newCard = Instantiate(cardGUIPrefab, transform);
         newCard.Init(card); // give the gui a reference to the card data
         cards.Insert(0, newCard);
+
+        if(state == State.Mini) {
+            RectTransform rt = (newCard.transform as RectTransform);
+            rt.anchoredPosition = new Vector2(0, -500);
+            rt.localScale = Vector3.one * .1f;
+
+        }
+
         PositionCards();
     }
     public void PopCard() {
