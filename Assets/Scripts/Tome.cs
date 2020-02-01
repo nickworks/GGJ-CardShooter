@@ -13,6 +13,21 @@ public class Tome
     }
 
     /// <summary>
+    /// This returns a tome with a pre-ordained set of cards
+    /// </summary>
+    /// <param name="cardEffects">The effects of the cards that this tome will be created with</param>
+    /// <returns>A Tome populated with the specified cards</returns>
+    public static Tome Authored(Card.Effect[] cardEffects )
+    {
+        Tome tome = new Tome();
+        foreach (Card.Effect e in cardEffects ){
+            tome.cards.Add(Card.GetSpecificCard(e));
+        }
+        return tome;
+    }
+
+
+    /// <summary>
     /// The cards held within the tome.
     /// </summary>
     public List<Card> cards = new List<Card>();

@@ -41,6 +41,23 @@ public class Card {
 
     public Effect effect = Effect.None;
 
+    
+    /// <summary>
+    /// This function creates a card with a specific effect
+    /// This is for creating authored enemies and testing projectiles
+    /// </summary>
+    /// <param name="desiredEffect">The effect the returned card should create</param>
+    /// <returns> a card with a specific effect </returns>
+    public static Card GetSpecificCard(Effect desiredEffect) {
+
+        return new Card()
+        {
+            effect = desiredEffect
+        };
+
+    }
+    
+
     /// <summary>
     /// Apply the effects of this card to a projectile.
     /// </summary>
@@ -83,5 +100,22 @@ public class Card {
                 break;
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void OnTomeAddition() { 
+    
+    
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void OnDestruction() { 
+    
+    }
+
+
 
 }
