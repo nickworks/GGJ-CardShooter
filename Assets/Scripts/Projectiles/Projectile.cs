@@ -23,13 +23,14 @@ public class Projectile : MonoBehaviour
 
     public List<Effect> effects = new List<Effect>();
 
+    private float timeUntilShake = 0;
 
     /// <summary>
     /// The Pawn that is responsible for the creation of this projectile
     /// </summary>
     GameObject owner;
 
-    public Vector3 velocity;
+    //public Vector3 velocity;
     float age = 0;
 
     void Start()
@@ -44,7 +45,6 @@ public class Projectile : MonoBehaviour
     }
     public void Init(float tomeBaseDamage) {
         baseDamage = tomeBaseDamage;
-        velocity = transform.forward * speed;
     }
     
     // Update is called once per frame
@@ -54,13 +54,24 @@ public class Projectile : MonoBehaviour
 
 
         if (homingTarget) {
-            Vector3 vectorToTarget = (homingTarget.position - transform.position).normalized * 10;
-            Vector3 force = (vectorToTarget - velocity);
-            force = force.normalized * .2f;
-            velocity += force;
+
+            Vector3 vectorToTarget = (homingTarget.position - transform.position).normalized;
+            Quaternion goal = Quaternion.FromToRotation(Vector3.forward, vectorToTarget);
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, goal, 360 * Time.deltaTime);
+
+            if (timeUntilShake <= 0) {
+                Quaternion rand = Quaternion.FromToRotation(Vector3.forward, Random.onUnitSphere);
+                transform.rotation *= rand;
+                timeUntilShake = .1f;
+            }
+
+            //Vector3 force = (vectorToTarget - velocity);
+            //force = force.normalized * .2f;
+            //velocity += force;
         }
 
-        transform.position += velocity * Time.deltaTime;
+        transform.position += transform.forward * speed * Time.deltaTime;
         age += Time.deltaTime;
         if(age > lifespan) {
             HandleDeath();
@@ -121,7 +132,9 @@ public class Projectile : MonoBehaviour
         Pawn[] targets = GameObject.FindObjectsOfType<Pawn>();
 
         homingTarget = targets[Random.Range(0, targets.Length)].transform;
-        velocity = Vector3.up * speed * .8f;
+        transform.rotation = Quaternion.FromToRotation(Vector3.forward, Vector3.up);// velocity = Vector3.up * speed * .8f;
+        lifespan = 4;
+        speed = 10;
     }
     public void MakeBig(int cardValue) {
         float currentScale = transform.localScale.x;

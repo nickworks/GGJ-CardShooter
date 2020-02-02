@@ -43,7 +43,7 @@ public class Card {
         var possibleEffects = Effect.GetValues(typeof(Effect));
         Effect effect = (Effect)possibleEffects.GetValue(UnityEngine.Random.Range(1, possibleEffects.Length));
 
-        //effect = Card.Effect.PawnSpeed2X;
+        //effect = Card.Effect.ProjectileHoming;
 
         int ammo = UnityEngine.Random.Range(2, 10);
         int value = UnityEngine.Random.Range(1, 10);
