@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.43946722, g: 0.4878168, b: 0.56805265, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -382,7 +382,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -391,7 +391,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.295
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -427,7 +427,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 7.17e-43, z: 0, w: 4e-45}
+  m_BoundingSphereOverride: {x: 6.786e-42, y: 1.01e-43, z: 4.5904e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -438,13 +438,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.67663527, y: -0.2576132, z: 0.024952838, w: 0.68933123}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 71.033005, y: -98.564, z: -75.189}
 --- !u!1 &717600216 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4871233310314576467, guid: d7647052bd1fe6f41931084444ee03b1,
@@ -645,6 +645,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767801949}
   m_CullTransparentMesh: 0
+--- !u!4 &845580379 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 12730887097347640, guid: ad4401c9dfe43b048820c3ff5a28e881,
+    type: 3}
+  m_PrefabInstance: {fileID: 454835666}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &963194227 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 9182164764220453368, guid: 3e5a9d6f0a76f23498d0d93a608bfeb5,
@@ -1080,7 +1086,7 @@ PrefabInstance:
         type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 845580379}
     - target: {fileID: 9182164765102978235, guid: 3e5a9d6f0a76f23498d0d93a608bfeb5,
         type: 3}
       propertyPath: m_LocalPosition.x
