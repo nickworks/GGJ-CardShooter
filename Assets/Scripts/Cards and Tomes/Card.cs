@@ -122,6 +122,7 @@ public class Card {
             case Effect.ProjectileRapidFire:
                 break;
             case Effect.ProjectileHuge:
+                projectile.MakeBig(numberValue);
                 break;
             case Effect.PawnDefense2X:
                 break;
