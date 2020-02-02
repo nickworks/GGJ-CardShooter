@@ -14,7 +14,7 @@ public class Pawn : MonoBehaviour
     CharacterController body;
     Quaternion lookDirection = Quaternion.identity;
 
-    List<Tome> tomes = new List<Tome>();
+    public List<Tome> tomes = new List<Tome>();
     int currentTomeIndex = 0;
 
     public Room_Volume currentRoom;
@@ -75,6 +75,10 @@ public class Pawn : MonoBehaviour
         currentTomeIndex = tomes.Count;
         tomes.Add(tome);
     }
+
+    public void PickupCard(Card card) {
+        CurrentTome().AddCard(card);
+    }
     #endregion
 
     //this is currently called by the projectile hitting this object. I do not know if that is consistent with the player controller design pattern
@@ -84,7 +88,7 @@ public class Pawn : MonoBehaviour
     /// <param name="damage">The damage to be reducted from this pawn's health</param>
     public void ApplyDamage(float damage) {
         health -= damage;
-        print("Ouch! My health is now just:" + health);
+        //print("Ouch! My health is now just:" + health);
     }
    
     void ShootProjectile(float yaw) {

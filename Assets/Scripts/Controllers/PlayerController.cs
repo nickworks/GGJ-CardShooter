@@ -33,6 +33,7 @@ public class PlayerController : Controller {
 
         pawn.PickupTome(Tome.Random());
         pawn.PickupTome(Tome.Random());
+        pawn.PickupTome(Tome.Random());
 
         UpdateHUD();
     }
@@ -42,6 +43,14 @@ public class PlayerController : Controller {
     void Update() {
         if (Game.isPaused) return;
         pawn.Move(moveAxis);
+
+        if (Input.GetKeyDown(KeyCode.KeypadPlus)) {
+            pawn.PickupCard(Card.Random());
+        }
+        if (Input.GetKeyDown(KeyCode.KeypadMinus)) {
+            //PopCard();
+        }
+
     }
 
     /// <summary>
@@ -103,14 +112,14 @@ public class PlayerController : Controller {
     public void OnNextTome(InputAction.CallbackContext ctxt) {
         if (ctxt.phase != InputActionPhase.Started) return;
         pawn.NextTome();
-        UpdateHUD();
+        UpdateHUD(1);
     }
     public void OnPrevTome(InputAction.CallbackContext ctxt) {
         if (ctxt.phase != InputActionPhase.Started) return;
         pawn.PrevTome();
-        UpdateHUD();
+        UpdateHUD(-1);
     }
-    void UpdateHUD() {
-        gui.SwitchTomes(pawn.CurrentTome());
+    void UpdateHUD(int shift = 0) {
+        gui.SwitchTomes(pawn.tomes, pawn.CurrentTome(), shift);
     }
 }

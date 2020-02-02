@@ -36,9 +36,17 @@ public class CardGUI : MonoBehaviour {
     float timeSinceLastAnim = 0;
     public bool destroyed = false;
 
+    /// <summary>
+    /// The parent GUI object. This is useful for positioning the card relative to its parent.
+    /// </summary>
+    [HideInInspector] public RectTransform tomeGUI;
+
     void Start() {
         rt = transform as RectTransform;
         MakeAllTheTextsOneSided(); // oof
+    }
+    public bool Matches(Card card) {
+        return (this.card == card);
     }
     void MakeAllTheTextsOneSided() {
         // the best I can do right now
@@ -48,8 +56,9 @@ public class CardGUI : MonoBehaviour {
     public void SetDepth(int i) {
         GetComponent<Canvas>().sortingOrder = i;
     }
-    public void Init(Card card) {
+    public void Init(Card card, RectTransform tomeGUI) {
         this.card = card;
+        this.tomeGUI = tomeGUI;
         foreach(EffectSprites sprite in spritesForCardEffects) {
             if(sprite.cardEffect == card.effect) {
                 imgBackSprite.sprite = sprite.sprite;
@@ -78,6 +87,9 @@ public class CardGUI : MonoBehaviour {
         // respond to changes in card durability
         AssessDurability();
 
+    }
+    public void SetParentToTome() {
+        transform.SetParent(tomeGUI);
     }
 
     private void AssessDurability() {

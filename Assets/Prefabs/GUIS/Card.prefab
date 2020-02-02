@@ -345,7 +345,7 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 750}
-  m_Pivot: {x: 0.5, y: 0.4088337}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3046999757039810948
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -451,6 +451,8 @@ MonoBehaviour:
   - {fileID: 8579205451329985578}
   - {fileID: 2948784147322839500}
   - {fileID: 3485630729530657614}
+  destroyed: 0
+  tomeGUI: {fileID: 0}
 --- !u!1 &3628318470031302082
 GameObject:
   m_ObjectHideFlags: 0
