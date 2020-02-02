@@ -8,10 +8,19 @@ public class Tome
     /// <summary>
     /// The base damage of this tome, projectiles will modify this falue in order to calculate their final damage output
     /// </summary>
-    public float tomeBaseDamage = 3; 
+    public float tomeBaseDamage = 3;
+
+    /// <summary>
+    /// The number of cards this tome can hold.
+    /// </summary>
+    public int cardCap = 3;
     
     public static Tome Random() {
         Tome tome = new Tome();
+
+        tome.cardCap = UnityEngine.Random.Range(2, 6);
+        tome.tomeBaseDamage = UnityEngine.Random.Range(1, 8);
+
         tome.cards.Add(Card.Random());
         tome.cards.Add(Card.Random());
         tome.cards.Add(Card.Random());
@@ -43,6 +52,9 @@ public class Tome
     public void AddCard(Card card) {
         // add card:
         cards.Add(card);
+
+        // remove cards if we've exceeded this book's limit:
+        if (cards.Count > cardCap) cards.RemoveAt(0);
 
         // mark tome as "dirty":
         updatedSinceLastRendered = true;
