@@ -42,7 +42,7 @@ public class TomeGUI : MonoBehaviour
     }
     public void AnimateTo(Vector3 pos, bool isCurrent) {
         targetPosition = pos;
-        targetScale = isCurrent ? .8f : .5f;
+        targetScale = isCurrent ? .5f : .25f;
         if (img == null) img = GetComponent<Image>();
         if (img != null) img.sprite = isCurrent ? bookOpen : bookClosed;
     }

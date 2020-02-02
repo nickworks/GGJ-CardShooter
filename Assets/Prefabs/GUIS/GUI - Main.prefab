@@ -244,7 +244,7 @@ MonoBehaviour:
     type: 3}
   tomeGUIPrefab: {fileID: 910835811229297571, guid: d8df87cb8a791434e895587d090b8d83,
     type: 3}
-  cardScaleSmall: 0.15
+  cardScaleSmall: 0.25
   cardScaleBig: 0.35
   currentTomeIndex: 0
   loadoutArea: {fileID: 424509289518685073}
@@ -426,6 +426,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -300, y: 100}
+  m_AnchoredPosition: {x: -100, y: 50}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
