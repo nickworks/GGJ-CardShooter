@@ -60,8 +60,12 @@
 
 
 				float cTot = (scrn.r + scrn.g + scrn.b) / 3;
+				cTot = (cTot > .75) ? 1 : cTot;
+				cTot = (cTot < .25) ? cTot * .5 : cTot;
 
-				colF *= ((1 - hlfT.r) / _ToneAggresion > (cTot)) ? .9 : 1;
+				float bigCTot = (cTot * 2.25 < 1) ? cTot * 2.25 : 1;
+
+				colF *= ((1 - hlfT.r) / _ToneAggresion > (cTot)) ? bigCTot : 1;
 
 				fixed4 end = lerp(colF, scrn, (1 - vint.r) / _Delay);
 

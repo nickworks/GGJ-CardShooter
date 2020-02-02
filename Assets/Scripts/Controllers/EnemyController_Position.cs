@@ -109,6 +109,8 @@ public class EnemyController_Position : Controller
         pawn.PickupTome(Tome.Authored(new Card.Effect[] { Card.Effect.None }));
 
         findPlayer();
+
+        Animation anim = GetComponentInChildren<Animation>();
     }
 
     // Update is called once per frame
