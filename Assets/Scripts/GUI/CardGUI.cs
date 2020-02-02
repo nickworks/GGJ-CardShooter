@@ -12,6 +12,7 @@ public class CardGUI : MonoBehaviour {
         public Card.Effect cardEffect;
         public Sprite sprite;
         public Color color;
+        public string title;
     }
 
     public EffectSprites[] spritesForCardEffects;
@@ -63,11 +64,11 @@ public class CardGUI : MonoBehaviour {
         this.card = card;
         this.tomeGUI = tomeGUI;
         txtNumber.text = card.numberValue.ToString();
-
         foreach(EffectSprites sprite in spritesForCardEffects) {
             if(sprite.cardEffect == card.effect) {
                 imgBackSprite.sprite = sprite.sprite;
                 imgBackground.color = sprite.color;
+                txtDesc.text = sprite.title;
                 break;
             }
         }

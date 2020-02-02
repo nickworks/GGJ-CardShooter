@@ -23,6 +23,7 @@ public class Projectile : MonoBehaviour
     private float homingQuality = 0;
 
     public List<Effect> effects = new List<Effect>();
+    public GameObject prefabExplosion;
 
     private float timeUntilShake = .25f;
 
@@ -152,6 +153,11 @@ public class Projectile : MonoBehaviour
             if (card.effect == Card.Effect.ProjectileExplosive) explosionSize += card.amount;
         }
         if (explosionSize > 0) {
+            if (prefabExplosion) {
+                GameObject obj = Instantiate(prefabExplosion, transform.position, Quaternion.identity);
+                obj.transform.localScale = Vector3.one * explosionSize;
+            }
+
             Pawn[] pawns = FindObjectsOfType<Pawn>();
             foreach (Pawn pawn in pawns) {
                 float d2 = (pawn.transform.position - transform.position).sqrMagnitude;
