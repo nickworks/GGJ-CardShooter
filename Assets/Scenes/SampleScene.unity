@@ -341,6 +341,11 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 12730887097347643, guid: ad4401c9dfe43b048820c3ff5a28e881,
+        type: 3}
+      propertyPath: rotationDampening
+      value: 0.00001
+      objectReference: {fileID: 0}
     - target: {fileID: 12730887097347644, guid: ad4401c9dfe43b048820c3ff5a28e881,
         type: 3}
       propertyPath: m_Name
@@ -422,7 +427,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 5.84e-43, y: 1e-45, z: 0, w: 5.93e-43}
+  m_BoundingSphereOverride: {x: 0, y: 7.17e-43, z: 0, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -468,7 +473,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717600216}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e923da60393257549a2b1e0c4852cebe, type: 3}
   m_Name: 
@@ -966,6 +971,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ProjectileTestPawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871233310314576468, guid: d7647052bd1fe6f41931084444ee03b1,
+        type: 3}
+      propertyPath: rotationDampening
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4871233310314576470, guid: d7647052bd1fe6f41931084444ee03b1,
         type: 3}
