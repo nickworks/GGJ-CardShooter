@@ -43,6 +43,8 @@ public class Card {
         var possibleEffects = Effect.GetValues(typeof(Effect));
         Effect effect = (Effect)possibleEffects.GetValue(UnityEngine.Random.Range(1, possibleEffects.Length));
 
+        //effect = Card.Effect.PawnSpeed2X;
+
         int ammo = UnityEngine.Random.Range(2, 10);
         int value = UnityEngine.Random.Range(1, 10);
 
@@ -108,25 +110,29 @@ public class Card {
             case Effect.ProjectileRapidFire:
                 // this effect is applied in Pawn.Attack()
                 break;
+            case Effect.ProjectileHoming:
+                projectile.MakeHoming();
+                break;
+            case Effect.ProjectileHuge:
+                projectile.MakeBig(numberValue);
+                break;
+
+                // NOT IMPLEMENTED YET:
+
             case Effect.ProjectileFire:
                 break;
             case Effect.ProjectilePoison:
                 break;
             case Effect.ProjectileLightning:
                 break;
-            case Effect.ProjectileHoming:
-                projectile.MakeHoming();
-                break;
             case Effect.ProjectileHitScan:
                 break;
             case Effect.ProjectileSinWave:
                 break;
-            case Effect.ProjectileHuge:
-                projectile.MakeBig(numberValue);
-                break;
             case Effect.PawnDefense2X:
                 break;
             case Effect.PawnSpeed2X:
+
                 break;
         }
     }
