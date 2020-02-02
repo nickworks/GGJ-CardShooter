@@ -123,4 +123,9 @@ public class Projectile : MonoBehaviour
         homingTarget = targets[Random.Range(0, targets.Length)].transform;
         velocity = Vector3.up * speed * .8f;
     }
+    public void MakeBig(int cardValue) {
+        float currentScale = transform.localScale.x;
+        currentScale += cardValue / (float) 2;
+        transform.localScale = Vector3.one * currentScale;
+    }
 }
