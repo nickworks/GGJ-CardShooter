@@ -43,6 +43,10 @@ public class Tome
     /// </summary>
     /// <param name="projectile">The projectile to modify.</param>
     public void ModifyProjectile(Projectile projectile) {
+
+        projectile.damage = projectile.baseDamage = tomeBaseDamage;
+
+
         foreach(Card card in cards) {
             card.ModifyProjectile(projectile);
         }

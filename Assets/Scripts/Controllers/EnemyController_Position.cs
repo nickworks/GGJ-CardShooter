@@ -114,6 +114,8 @@ public class EnemyController_Position : Controller
     // Update is called once per frame
     void Update()
     {
+        if (Game.isPaused) return;
+
         seekPlayer();
 
         timeTillRecalc -= Time.deltaTime;

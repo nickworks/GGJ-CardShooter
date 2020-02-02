@@ -6,7 +6,7 @@ using UnityEngine;
 public class Pawn : MonoBehaviour
 {
     public float moveSpeed = 3;
-
+    [Range(.00001f, .05f)] public float rotationDampening = .05f;
     public float health = 100;
 
     public Projectile projectilePrefab;
@@ -26,7 +26,7 @@ public class Pawn : MonoBehaviour
     
     void Update()
     {
-        transform.rotation = MathStuff.Damp(transform.rotation, lookDirection, .05f);
+        transform.rotation = MathStuff.Damp(transform.rotation, lookDirection, rotationDampening);
     }
 
     #region API (call these funcs from controller classes):

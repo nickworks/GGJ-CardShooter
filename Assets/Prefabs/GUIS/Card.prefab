@@ -390,37 +390,54 @@ MonoBehaviour:
   spritesForCardEffects:
   - cardEffect: 1
     sprite: {fileID: 21300000, guid: 656932510af45e04782f4b288e720d69, type: 3}
+    color: {r: 1, g: 0, b: 0.42894077, a: 1}
   - cardEffect: 2
     sprite: {fileID: 21300000, guid: 36756ab62f62ba5438457f244f1a9a11, type: 3}
+    color: {r: 0.77254903, g: 0.26060244, b: 0, a: 1}
   - cardEffect: 3
     sprite: {fileID: 21300000, guid: 217b3342e5abe224c96dd3fea0ee52b4, type: 3}
+    color: {r: 0, g: 0.5566038, b: 0.0788583, a: 1}
   - cardEffect: 4
     sprite: {fileID: 21300000, guid: bf68b30a13034a04ca759f7d4ff0194d, type: 3}
+    color: {r: 0, g: 0.8019811, b: 0.9716981, a: 1}
   - cardEffect: 5
     sprite: {fileID: 21300000, guid: 42ec982b3ed8cd8439251977c15bb5e3, type: 3}
+    color: {r: 0.1290283, g: 0.17227714, b: 0.4433962, a: 1}
   - cardEffect: 6
     sprite: {fileID: 21300000, guid: 46a47fb3135cad34a8faf52c0ec08efa, type: 3}
+    color: {r: 0.9622642, g: 0.4997311, b: 0.040850822, a: 1}
   - cardEffect: 7
     sprite: {fileID: 21300000, guid: 38d58cac2921c9c44a165fbfe00a9d73, type: 3}
+    color: {r: 0.6320754, g: 0.3428711, b: 0.3428711, a: 1}
   - cardEffect: 8
     sprite: {fileID: 21300000, guid: c8311656f7d9ebd4e81892b0f5eaea6f, type: 3}
+    color: {r: 0.3417654, g: 0.09242612, b: 0.6320754, a: 1}
   - cardEffect: 9
     sprite: {fileID: 21300000, guid: c293916bcd832004a9a820c3aef80744, type: 3}
+    color: {r: 1, g: 0, b: 0.5896168, a: 1}
   - cardEffect: 10
     sprite: {fileID: 21300000, guid: 019a81e7b6ea4054bb14e21dda503fc0, type: 3}
+    color: {r: 0.38980296, g: 0.7924528, b: 0.31025273, a: 1}
   - cardEffect: 11
     sprite: {fileID: 21300000, guid: f1c7f0f38a019fa4db9ae527222951f5, type: 3}
+    color: {r: 0.1981132, g: 0.13737094, b: 0.13737094, a: 1}
   - cardEffect: 12
     sprite: {fileID: 21300000, guid: efbfe2b2217b17e4f97e9b2b6e26fe97, type: 3}
+    color: {r: 0.8018868, g: 0.6543699, b: 0.6543699, a: 1}
   - cardEffect: 13
     sprite: {fileID: 21300000, guid: 6491c3bd80afdbc449857ddcc57ec6aa, type: 3}
+    color: {r: 0.3773585, g: 0.051619805, b: 0.051619805, a: 1}
   - cardEffect: 14
     sprite: {fileID: 21300000, guid: 356321721d410b947bc9c8370270f3ae, type: 3}
+    color: {r: 0.48342615, g: 0.84400004, b: 0.1711887, a: 1}
   - cardEffect: 15
     sprite: {fileID: 21300000, guid: 980b74cb4deeb674b83372d303b20b58, type: 3}
+    color: {r: 0.46436602, g: 0.809, b: 0.683104, a: 1}
   - cardEffect: 16
     sprite: {fileID: 21300000, guid: bdf8e097939b4344db865a1da7147287, type: 3}
+    color: {r: 0.06852971, g: 0.35890707, b: 0.41509432, a: 1}
   imgBackSprite: {fileID: 1538020676666658420}
+  imgBackground: {fileID: 6972003227413043889}
 --- !u!1 &3628318470031302082
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +815,7 @@ GameObject:
   - component: {fileID: 308759237031407796}
   - component: {fileID: 6972003227413043889}
   m_Layer: 5
-  m_Name: Center
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
