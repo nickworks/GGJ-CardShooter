@@ -151,6 +151,7 @@ MonoBehaviour:
   maxTimeTillRecalcVariance: 3
   actionSpeed: 4
   wanderSpeed: 1
+  cardDrop: {fileID: 0}
 --- !u!114 &33029785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,6 +496,7 @@ MonoBehaviour:
   maxTimeTillRecalcVariance: 3
   actionSpeed: 4
   wanderSpeed: 1
+  cardDrop: {fileID: 0}
 --- !u!1 &748180533
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,6 +808,7 @@ MonoBehaviour:
   maxTimeTillRecalcVariance: 3
   actionSpeed: 4
   wanderSpeed: 1
+  cardDrop: {fileID: 0}
 --- !u!114 &1202186288
 MonoBehaviour:
   m_ObjectHideFlags: 0

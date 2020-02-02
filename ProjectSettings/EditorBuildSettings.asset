@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: c6c260c2130a1924896c90d7fa403eb7
+  - enabled: 1
+    path: Assets/Scenes/Dungeon.unity
+    guid: 3f3ba06ff57d6384a816122a59dc9a14
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4a8194e4ad328a04b89deeb1d6ec5fab,
       type: 2}
