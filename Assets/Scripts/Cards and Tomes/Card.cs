@@ -104,6 +104,10 @@ public class Card {
             case Effect.ProjectileIce:
                 // applied to target in Projectile.CrashedIntoPawn()
                 break;
+            case Effect.ProjectileSpread:
+            case Effect.ProjectileRapidFire:
+                // this effect is applied in Pawn.Attack()
+                break;
             case Effect.ProjectileFire:
                 break;
             case Effect.ProjectilePoison:
@@ -116,10 +120,6 @@ public class Card {
             case Effect.ProjectileHitScan:
                 break;
             case Effect.ProjectileSinWave:
-                break;
-            case Effect.ProjectileSpread:
-                break;
-            case Effect.ProjectileRapidFire:
                 break;
             case Effect.ProjectileHuge:
                 projectile.MakeBig(numberValue);

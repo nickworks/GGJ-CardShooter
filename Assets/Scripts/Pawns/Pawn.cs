@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,9 +18,11 @@ public class Pawn : MonoBehaviour
     public List<Tome> tomes = new List<Tome>();
     int currentTomeIndex = 0;
 
+    public bool wantsToAttack = false;
+
     public Room_Volume currentRoom;
 
-
+    float cooldownBeforeAttacking = 0;
 
     void Start()
     {
@@ -28,6 +31,9 @@ public class Pawn : MonoBehaviour
     
     void Update()
     {
+        if (Game.isPaused) return;
+        if (cooldownBeforeAttacking > 0) cooldownBeforeAttacking -= Time.deltaTime;
+        else if (wantsToAttack) Attack();
         transform.rotation = MathStuff.Damp(transform.rotation, lookDirection, rotationDampening);
     }
 
@@ -44,9 +50,12 @@ public class Pawn : MonoBehaviour
     public void LookAim(float angle) {
         lookDirection = Quaternion.Euler(0, angle, 0);
     }
-    public void Attack() {
+    private void Attack() {
+
+        if (cooldownBeforeAttacking > 0) return;
 
         int projectileCount = CurrentTome().HowManyProjectiles();
+        cooldownBeforeAttacking = CurrentTome().GetDelayBetweenShots();
 
         CurrentTome().Use();
 
@@ -57,12 +66,22 @@ public class Pawn : MonoBehaviour
             ShootProjectile(-offset + degreesBetweenBullets * i);
         }
     }
+    public void StartAttack() {
+        Attack();
+        wantsToAttack = true;
+    }
+    public void StopAttack() {
+        wantsToAttack = false;
+        cooldownBeforeAttacking = 0;
+    }
     public void NextTome() {
         if (++currentTomeIndex >= tomes.Count) currentTomeIndex = 0;
     }
     public void PrevTome() {
         if (--currentTomeIndex < 0) currentTomeIndex = tomes.Count - 1;
     }
+
+
     public Tome CurrentTome() {
         
         if (currentTomeIndex < 0) return new Tome(); // empty tome

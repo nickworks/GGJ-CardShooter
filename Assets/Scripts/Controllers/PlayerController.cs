@@ -67,7 +67,11 @@ public class PlayerController : Controller {
     /// <param name="ctxt"></param>
     public void OnFire(InputAction.CallbackContext ctxt) {
         if (Game.isPaused) return;
-        if (ctxt.phase == InputActionPhase.Started) pawn.Attack();
+
+        float val = ctxt.ReadValue<float>();
+
+        if (val > .5f) pawn.StartAttack();
+        else pawn.StopAttack();
     }
     /// <summary>
     /// When aiming with a controller stick,
