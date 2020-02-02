@@ -47,7 +47,9 @@ public class PlayerController : Controller {
         if (Input.GetKeyDown(KeyCode.KeypadPlus)) {
             pawn.PickupCard(Card.Random());
         }
-        //if (Input.GetKeyDown(KeyCode.KeypadMinus)) PopCard();
+        if (Input.GetKeyDown(KeyCode.KeypadMinus)) {
+            //PopCard();
+        }
 
     }
 

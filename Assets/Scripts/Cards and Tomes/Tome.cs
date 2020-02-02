@@ -47,9 +47,13 @@ public class Tome
         // mark tome as "dirty":
         updatedSinceLastRendered = true;
     }
+
     public void Use() {
         Card card = TopCard();
-        if(card != null) card.Use();
+        if (card == null) return;
+
+        card.Use();
+        IsTheTopCardDestroyed();
     }
     public Card TopCard() {
         if (cards.Count == 0) return null;
@@ -63,6 +67,7 @@ public class Tome
         Card topCard = cards[i];
         if (topCard.GetDurability() <= 0) {
             cards.RemoveAt(i);
+            updatedSinceLastRendered = true;
             return true;
         }
         return false;

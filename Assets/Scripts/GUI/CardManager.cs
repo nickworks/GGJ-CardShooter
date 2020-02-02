@@ -113,13 +113,17 @@ public class CardManager : MonoBehaviour
 
         PositionCards();
     }
+    /*
     public void PopCard() {
         LoseCardAt(cards.Count - 1);
     }
     public void DestroyCard() {
         LoseCardAt(0);
-    }
-    void LoseCardAt(int index) {
+    }*/
+    void LoseCard(CardGUI card) {
+
+        int index = cards.IndexOf(card);
+
         if (cards.Count == 0) return;
         if (index < 0) return;
         if (index >= cards.Count) return;
@@ -130,7 +134,6 @@ public class CardManager : MonoBehaviour
 
         cards.RemoveAt(index);
         PositionCards();
-        print("lose card??");
     }
     void PositionCards() {
 
@@ -193,23 +196,36 @@ public class CardManager : MonoBehaviour
     }
 
     private void CheckForUpdatesToTome() {
-        if (currentTome.updatedSinceLastRendered) {
+        if (!currentTome.updatedSinceLastRendered) return;
 
-            for (int i = currentTome.cards.Count - 1; i >= 0; i--) {
-                bool cardAlreadyExists = false;
-                foreach (CardGUI card in cards) {
-                    if (card.Matches(currentTome.cards[i])){
-                        cardAlreadyExists = true;
-                        break;
-                    }
-                }
-                if (!cardAlreadyExists) {
-                    AddCard(currentTome.cards[i]);
+        // find cards in tome that don't exist in GUI:
+        for (int i = currentTome.cards.Count - 1; i >= 0; i--) {
+            bool cardAlreadyExists = false;
+            foreach (CardGUI card in cards) {
+                if (card.Matches(currentTome.cards[i])){
+                    cardAlreadyExists = true;
+                    break;
                 }
             }
-            currentTome.updatedSinceLastRendered = false;
+            if (!cardAlreadyExists) {
+                AddCard(currentTome.cards[i]);
+            }
         }
 
-        // TODO: also check for cards that were removed...
+        // find cards on-screen that don't exist in tome:
+        List<CardGUI> cardsToRemove = new List<CardGUI>(cards.ToArray());
+        foreach (CardGUI card in cards) {
+            for (int i = currentTome.cards.Count - 1; i >= 0; i--) {
+                if (card.Matches(currentTome.cards[i])) {
+                    cardsToRemove.Remove(card);
+                    break;
+                }
+            }
+        }
+        foreach(CardGUI card in cardsToRemove) {
+            LoseCard(card);
+        }
+
+        currentTome.updatedSinceLastRendered = false;
     }
 }
