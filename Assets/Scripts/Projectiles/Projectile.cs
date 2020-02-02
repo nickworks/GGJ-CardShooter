@@ -7,9 +7,13 @@ public class Projectile : MonoBehaviour
     public float speed = 10;
     public float lifespan = 2;
 
+    /// <summary>
+    /// The damage of this projectile, before card modifications
+    /// </summary>
+    public float baseDamage;
 
     /// <summary>
-    /// The Damage applyed to the actor hitby this projectile, after card modifications
+    /// The damage applyed to the actor hit by this projectile, after card modifications
     /// </summary>
     public float damage;
 
@@ -29,7 +33,6 @@ public class Projectile : MonoBehaviour
     /// Use this to pass info from Pawn to Projectile.
     /// </summary>
     public void Init(GameObject owner) {
-        // TODO
         this.owner = owner;
     }
 
