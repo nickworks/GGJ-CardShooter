@@ -40,6 +40,7 @@ public class PlayerController : Controller {
     /// Tick
     /// </summary>
     void Update() {
+        if (Game.isPaused) return;
         pawn.Move(moveAxis);
     }
 
@@ -49,7 +50,6 @@ public class PlayerController : Controller {
     /// </summary>
     /// <param name="ctxt"></param>
     public void OnMove(InputAction.CallbackContext ctxt) {
-        if (Game.isPaused) return;
         moveAxis = ctxt.ReadValue<Vector2>();
     }
     /// <summary>

@@ -40,6 +40,7 @@ public class EnemyController_ProjectileTest : Controller
 
     // Update is called once per frame
     void Update() {
+        if (Game.isPaused) return;
         if (timer <= 0) {
             pawn.Attack();
             timer = timerSet;
