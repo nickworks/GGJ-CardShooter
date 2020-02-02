@@ -42,7 +42,8 @@ public class EnemyController_ProjectileTest : Controller
     void Update() {
         if (Game.isPaused) return;
         if (timer <= 0) {
-            pawn.Attack();
+            pawn.StartAttack();
+            pawn.StopAttack();
             timer = timerSet;
             Rotate();
         }

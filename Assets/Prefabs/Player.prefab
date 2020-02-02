@@ -47,11 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ade1c8e2a05cd749acef51c99592754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
-  rotationDampening: 0.05
+  moveSpeed: 10
+  rotationDampening: 0.00001
   health: 100
   projectilePrefab: {fileID: 1232235381016309722, guid: 5aa9cad8f82f8c145bd517e3f0d887ca,
     type: 3}
+  currentRoom: {fileID: 0}
 --- !u!114 &12730887097347642
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -91,6 +91,21 @@ public class Tome
         }
         return total;
     }
+    public float GetDelayBetweenShots() {
+
+        float delay = .5f;
+
+        int total = 1;
+        foreach (Card card in cards) {
+            if (card.effect == Card.Effect.ProjectileRapidFire) total += card.numberValue;
+        }
+
+        for(int i = 0; i < total; i++) {
+            delay *= .9f;
+        }
+
+        return delay;
+    }
     /// <summary>
     /// Apply the effects of each card to a projectile.
     /// </summary>
