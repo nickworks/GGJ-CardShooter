@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CardGUI : MonoBehaviour {
 
+    
     [System.Serializable]
     public struct EffectSprites {
         public Card.Effect cardEffect;
@@ -17,6 +18,8 @@ public class CardGUI : MonoBehaviour {
 
     public Image imgBackSprite;
     public Image imgBackground;
+    public TextMeshProUGUI txtNumber;
+    public TextMeshProUGUI txtDesc;
 
     Quaternion targetRotation;
     Vector2 targetPosition;
@@ -59,6 +62,8 @@ public class CardGUI : MonoBehaviour {
     public void Init(Card card, RectTransform tomeGUI) {
         this.card = card;
         this.tomeGUI = tomeGUI;
+        txtNumber.text = card.numberValue.ToString();
+
         foreach(EffectSprites sprite in spritesForCardEffects) {
             if(sprite.cardEffect == card.effect) {
                 imgBackSprite.sprite = sprite.sprite;
