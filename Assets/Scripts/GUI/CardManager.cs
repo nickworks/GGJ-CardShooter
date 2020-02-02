@@ -12,19 +12,72 @@ public class CardManager : MonoBehaviour
     }
 
     public CardGUI cardGUIPrefab;
-    public RectTransform areaLoadout;
+    public TomeGUI tomeGUIPrefab;
+
     public float cardScaleSmall = .01f;
     public float cardScaleBig = .1f;
 
+    /// <summary>
+    /// The current state of the gui.
+    /// </summary>
     State state = State.Mini;
-    List<CardGUI> cards = new List<CardGUI>(); // card index 0 should be on bottom
+    
+    /// <summary>
+    /// The background image. We store a reference to this to fade it in/out when paused/unpaused.
+    /// </summary>
     Image bg;
+
+    /// <summary>
+    /// The current tome held by the player
+    /// </summary>
     Tome currentTome;
+
+    /// <summary>
+    /// The cardGUI objects managed by this CardManager.
+    /// The manager gives the cards position, rotation, and scale info.
+    /// </summary>
+    List<CardGUI> cards = new List<CardGUI>(); // card index 0 should be on bottom
+
+    /// <summary>
+    /// The tome icons on-screen. Managed by this CardManager.
+    /// </summary>
+    List<TomeGUI> tomes = new List<TomeGUI>();
+    public int currentTomeIndex = 0;
+
+    public RectTransform loadoutArea;
 
     void Start() {
         bg = GetComponent<Image>();
     }
-    public void SwitchTomes(Tome tome) {
+    public void SwitchTomes(List<Tome> tomes, Tome tome, int shift) {
+
+        for (int i = 0; i < tomes.Count; i++) {
+            Tome t = tomes[i];
+            bool thisTomeExistsInGui = false;
+            foreach(TomeGUI tg in this.tomes) {
+                if (tg.tome == t) {
+                    thisTomeExistsInGui = true;
+                    break;
+                }
+            }
+            if (!thisTomeExistsInGui) {
+                TomeGUI newTomeGUI = Instantiate(tomeGUIPrefab, loadoutArea);
+                newTomeGUI.tome = t;
+                this.tomes.Insert(i, newTomeGUI);
+            }
+        }
+        currentTomeIndex = tomes.IndexOf(tome);
+
+        float dx = 130;
+        float x = -(this.tomes.Count - 1) * dx / 2;
+        for (int i = 0; i < this.tomes.Count; i++) {
+            TomeGUI t = this.tomes[i];
+            bool isCurrent = (i == currentTomeIndex) ;
+
+            t.AnimateTo(new Vector3(x + dx * i, 0), isCurrent);
+
+        }
+
         RemoveAllCards();
         currentTome = tome;
         AddCards(tome.cards.ToArray());
@@ -41,15 +94,20 @@ public class CardManager : MonoBehaviour
             AddCard(card);
         }
     }
-    public void AddCard(Card card) {
+    public void AddCard(Card card, float delay = 0) {
+
+        RectTransform tome = (tomes[currentTomeIndex].transform as RectTransform);
+
         CardGUI newCard = Instantiate(cardGUIPrefab, transform);
-        newCard.Init(card); // give the gui a reference to the card data
+        newCard.Init(card, tome); // give the gui a reference to the card data
         cards.Insert(0, newCard);
 
         if(state == State.Mini) {
+            // size / position of new card if added while in mini mode:
             RectTransform rt = (newCard.transform as RectTransform);
-            rt.anchoredPosition = new Vector2(0, -500);
-            rt.localScale = Vector3.one * .1f;
+            rt.SetParent(newCard.tomeGUI);
+            rt.anchoredPosition = new Vector2(0, 0);
+            rt.localScale = Vector3.zero;
 
         }
 
@@ -72,6 +130,7 @@ public class CardManager : MonoBehaviour
 
         cards.RemoveAt(index);
         PositionCards();
+        print("lose card??");
     }
     void PositionCards() {
 
@@ -89,12 +148,14 @@ public class CardManager : MonoBehaviour
         }
     }
     void PositionCardsMini() {
+        float y = 100;
         float dy = 50;
         for (int i = 0; i < cards.Count; i++) {
-            Vector3 pos = new Vector2(0, 0 + dy * i);
+            Vector3 pos = new Vector2(0, y + dy * i);
             Quaternion rot = Quaternion.Euler(0, 180, 90);
             cards[i].AnimateTo(pos, rot, cardScaleSmall, (cards.Count - i) * .1f);
-            cards[i].transform.SetParent(areaLoadout);
+            //cards[i].transform.SetParent(tomes[0]);
+            cards[i].SetParentToTome();
         }
     }
     void PositionCardsInspect() {
@@ -129,11 +190,12 @@ public class CardManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.KeypadMinus)) PopCard();
 
-
-        if (currentTome.IsTheTopCardDestroyed()) {
-            
-            LoseCardAt(0);
+        /*
+        // remove all cards from tome??
+        for (int i = currentTome.cards.Count; i >= 0; i--) {
+            LoseCardAt(i);
         }
+        /**/
 
         float a = bg.color.a;
         if (a < 0.6f && state == State.Inspect) a += 2 * Time.deltaTime;

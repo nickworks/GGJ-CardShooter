@@ -1160,6 +1160,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GUI - Main
       objectReference: {fileID: 0}
+    - target: {fileID: 4010465210474603984, guid: 40edabd77b3e79c4bb038f8baff91b1b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40edabd77b3e79c4bb038f8baff91b1b, type: 3}
 --- !u!1001 &4879406446777210125

@@ -14,7 +14,7 @@ public class Pawn : MonoBehaviour
     CharacterController body;
     Quaternion lookDirection = Quaternion.identity;
 
-    List<Tome> tomes = new List<Tome>();
+    public List<Tome> tomes = new List<Tome>();
     int currentTomeIndex = 0;
 
     public Room_Volume currentRoom;
@@ -84,7 +84,7 @@ public class Pawn : MonoBehaviour
     /// <param name="damage">The damage to be reducted from this pawn's health</param>
     public void ApplyDamage(float damage) {
         health -= damage;
-        print("Ouch! My health is now just:" + health);
+        //print("Ouch! My health is now just:" + health);
     }
    
     void ShootProjectile(float yaw) {
