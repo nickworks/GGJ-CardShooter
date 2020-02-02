@@ -75,14 +75,25 @@ public class Projectile : MonoBehaviour
             } else {
                 if (age < lifespan / 4) {
 
-                    Quaternion rand = Quaternion.FromToRotation(Vector3.forward, Random.onUnitSphere);
-                    float p = Random.Range(.01f, .05f);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, rand, p);
+                    RandomRotate(.01f, .05f, true);
 
                     timeUntilShake = (homingQuality / 20) * .01f;
                 }
             }
         }
+    }
+
+    public void RandomRotate(float minStrength, float maxStrength, bool includeZ = false) {
+        float p = Random.Range(minStrength, maxStrength);
+
+        Vector3 dir = Random.onUnitSphere;
+        if (!includeZ) {
+            dir.y = 0;
+            dir.Normalize();
+        }
+
+        Quaternion rand = Quaternion.FromToRotation(Vector3.forward, dir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rand, p);
     }
 
     /*
