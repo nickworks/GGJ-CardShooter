@@ -16,9 +16,24 @@ public class Pawn : MonoBehaviour
     Quaternion lookDirection = Quaternion.identity;
 
     public List<Tome> tomes = new List<Tome>();
-    int currentTomeIndex = 0;
+    int _currentTomeIndex = 0;
+    int currentTomeIndex {
+        set {
+            while (value >= tomes.Count) value -= tomes.Count;
+            while (value < 0) value += tomes.Count;
+            _currentTomeIndex = value;
+            RecalculateValuesFromTome();
+        }
+        get { return _currentTomeIndex; }
+    }
+
+    private void RecalculateValuesFromTome() {
+
+        modifiedSpeed = moveSpeed * CurrentTome().GetPawnSpeedMultiplier();
+    }
 
     public bool wantsToAttack = false;
+    float modifiedSpeed;
 
     public Room_Volume currentRoom;
 
@@ -35,6 +50,10 @@ public class Pawn : MonoBehaviour
         if (cooldownBeforeAttacking > 0) cooldownBeforeAttacking -= Time.deltaTime;
         else if (wantsToAttack) Attack();
         transform.rotation = MathStuff.Damp(transform.rotation, lookDirection, rotationDampening);
+
+        if (CurrentTome().updatedSinceLastRecalcPawnValues) {
+            RecalculateValuesFromTome();
+        }
     }
 
     #region API (call these funcs from controller classes):
@@ -44,7 +63,7 @@ public class Pawn : MonoBehaviour
     /// <param name="dir">The direction to move the pawn. This should be a 2D value, as if viewing from above.</param>
     public void Move(Vector2 dir) {
 
-        Vector3 dis = new Vector3(dir.x, 0, dir.y) * moveSpeed;
+        Vector3 dis = new Vector3(dir.x, 0, dir.y) * modifiedSpeed;
         body.SimpleMove(dis);
     }
     public void LookAim(float angle) {
@@ -75,13 +94,11 @@ public class Pawn : MonoBehaviour
         cooldownBeforeAttacking = 0;
     }
     public void NextTome() {
-        if (++currentTomeIndex >= tomes.Count) currentTomeIndex = 0;
+        currentTomeIndex++;
     }
     public void PrevTome() {
-        if (--currentTomeIndex < 0) currentTomeIndex = tomes.Count - 1;
+        currentTomeIndex--;
     }
-
-
     public Tome CurrentTome() {
         
         if (currentTomeIndex < 0) return new Tome(); // empty tome
@@ -91,8 +108,8 @@ public class Pawn : MonoBehaviour
     }
 
     public void PickupTome(Tome tome) {
-        currentTomeIndex = tomes.Count;
         tomes.Add(tome);
+        currentTomeIndex = tomes.Count - 1;
     }
 
     public void PickupCard(Card card) {

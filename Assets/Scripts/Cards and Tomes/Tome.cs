@@ -48,6 +48,7 @@ public class Tome
     public List<Card> cards = new List<Card>();
 
     public bool updatedSinceLastRendered = true;
+    public bool updatedSinceLastRecalcPawnValues = true;
 
     public void AddCard(Card card) {
         // add card:
@@ -58,6 +59,7 @@ public class Tome
 
         // mark tome as "dirty":
         updatedSinceLastRendered = true;
+        updatedSinceLastRecalcPawnValues = true;
     }
 
     public void Use() {
@@ -80,31 +82,34 @@ public class Tome
         if (topCard.GetDurability() <= 0) {
             cards.RemoveAt(i);
             updatedSinceLastRendered = true;
+            updatedSinceLastRecalcPawnValues = true;
             return true;
         }
         return false;
     }
-    public int HowManyProjectiles() {
-        int total = 1;
+    int TotalValueOf(Card.Effect effect) {
+        int total = 0;
         foreach (Card card in cards) {
-            if (card.effect == Card.Effect.ProjectileSpread) total += card.numberValue;
+            if (card.effect == effect) total += card.numberValue;
         }
         return total;
     }
+    public int HowManyProjectiles() {
+        return 1 + TotalValueOf(Card.Effect.ProjectileSpread);
+    }
     public float GetDelayBetweenShots() {
 
+        int count = TotalValueOf(Card.Effect.ProjectileRapidFire);
+
         float delay = .5f;
-
-        int total = 1;
-        foreach (Card card in cards) {
-            if (card.effect == Card.Effect.ProjectileRapidFire) total += card.numberValue;
-        }
-
-        for(int i = 0; i < total; i++) {
-            delay *= .9f;
-        }
-
+        for(int i = 0; i < count; i++) delay *= .9f;
         return delay;
+    }
+    public float GetPawnSpeedMultiplier() {
+
+        int count = TotalValueOf(Card.Effect.PawnSpeed2X);
+
+        return 1 + count / 10f;
     }
     /// <summary>
     /// Apply the effects of each card to a projectile.

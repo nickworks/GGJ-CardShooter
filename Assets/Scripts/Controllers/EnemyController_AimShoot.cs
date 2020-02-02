@@ -55,7 +55,6 @@ public class EnemyController_AimShoot : MonoBehaviour
 
         if (shotDelay <= 0)
         {
-
             pawn.StartAttack();
             pawn.StopAttack();
             shotDelay = Random.Range(minShotDelay, maxShotDelay);
