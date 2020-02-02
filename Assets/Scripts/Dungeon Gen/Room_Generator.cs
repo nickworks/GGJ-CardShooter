@@ -26,7 +26,7 @@ public class Room_Generator : MonoBehaviour
     {
         equipSensors();
 
-        if(transform.position != Vector3.zero)
+        if(transform.localPosition != Vector3.zero)
         {
             GameObject room = Instantiate(rooms[(int)Random.Range(0, rooms.Count)]);
             
