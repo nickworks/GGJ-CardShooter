@@ -1434,3 +1434,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat: {fileID: 2100000, guid: 69d46e2ce8d0af24b9b130b9167d2a43, type: 2}
   delay: 0
+  xStrength: 0.025
+  zStrength: 0.05

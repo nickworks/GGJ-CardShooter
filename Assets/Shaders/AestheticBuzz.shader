@@ -45,12 +45,21 @@
             sampler2D _Vin;
 			float _ToneAggresion;
 			float _Delay;
+			float _offsetX;
+			float _offsetY;
 
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 scrn = tex2D(_MainTex, i.uv);
 				
-				fixed4 hlfT = tex2D(_HalfTone, i.uv);
+
+				v2f newUv;
+				newUv.vertex = i.vertex;
+				newUv.uv.x = i.uv.x + _offsetX;
+				newUv.uv.y = i.uv.y + _offsetY;
+
+				fixed4 hlfT = tex2D(_HalfTone, newUv.uv);
+
 				fixed4 vint = tex2D(_Vin, i.uv);
 
 
@@ -68,6 +77,7 @@
 				colF *= ((1 - hlfT.r) / _ToneAggresion > (cTot)) ? bigCTot : 1;
 
 				fixed4 end = lerp(colF, scrn, (1 - vint.r) / _Delay);
+				end = lerp(end, scrn, .5);
 
                 return end;
             }
