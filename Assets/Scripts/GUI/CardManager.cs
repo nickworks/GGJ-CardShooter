@@ -19,12 +19,14 @@ public class CardManager : MonoBehaviour
     State state = State.Mini;
     List<CardGUI> cards = new List<CardGUI>(); // card index 0 should be on bottom
     Image bg;
+    Tome currentTome;
 
     void Start() {
         bg = GetComponent<Image>();
     }
     public void SwitchTomes(Tome tome) {
         RemoveAllCards();
+        currentTome = tome;
         AddCards(tome.cards.ToArray());
     }
     public void RemoveAllCards() {
@@ -63,7 +65,11 @@ public class CardManager : MonoBehaviour
         if (cards.Count == 0) return;
         if (index < 0) return;
         if (index >= cards.Count) return;
-        Destroy(cards[index].gameObject);
+
+
+        cards[index].AnimateTo(new Vector3(100, 0, 0), Quaternion.Euler(0, 0, 1000), transform.localScale.x, 0);
+        Destroy(cards[index].gameObject, .2f);
+
         cards.RemoveAt(index);
         PositionCards();
     }
@@ -119,6 +125,12 @@ public class CardManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.KeypadPlus)) AddCard(Card.Random());
         if (Input.GetKeyDown(KeyCode.KeypadMinus)) PopCard();
+
+
+        if (currentTome.IsTheTopCardDestroyed()) {
+            
+            LoseCardAt(0);
+        }
 
         float a = bg.color.a;
         if (a < 0.6f && state == State.Inspect) a += 2 * Time.deltaTime;

@@ -43,6 +43,7 @@ public class Pawn : MonoBehaviour
         lookDirection = Quaternion.Euler(0, angle, 0);
     }
     public void Attack() {
+        CurrentTome().Use();
         ShootProjectile();
     }
     public void NextTome() {

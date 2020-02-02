@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,6 +38,26 @@ public class Tome
     /// </summary>
     public List<Card> cards = new List<Card>();
 
+    public void Use() {
+        Card card = TopCard();
+        if(card != null) card.Use();
+    }
+    public Card TopCard() {
+        if (cards.Count == 0) return null;
+        return cards[cards.Count - 1];
+    }
+    public bool IsTheTopCardDestroyed() {
+        if (cards.Count == 0) return false;
+
+        int i = cards.Count - 1;
+
+        Card topCard = cards[i];
+        if (topCard.GetDurability() <= 0) {
+            cards.RemoveAt(i);
+            return true;
+        }
+        return false;
+    }
 
     /// <summary>
     /// Apply the effects of each card to a projectile.
