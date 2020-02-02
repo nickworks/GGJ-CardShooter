@@ -29,19 +29,41 @@ public class Card {
     /// </summary>
     /// <returns>A random card</returns>
     public static Card Random() {
-        // TODO
+        
+        
+        // TODO implement a card lookup here.
+        // we want to limit the randomness only to the
+        // combinations that the player has unlocked
+
+
+
+
+        // or generate:
 
         var possibleEffects = Effect.GetValues(typeof(Effect));
         Effect effect = (Effect)possibleEffects.GetValue(UnityEngine.Random.Range(1, possibleEffects.Length));
 
+        int ammo = UnityEngine.Random.Range(2, 10);
+
+
         return new Card() {
-            effect = effect
+            effect = effect,
+            ammo = ammo,
+            ammoMax = ammo,
         };
     }
 
     public Effect effect = Effect.None;
+    public int ammo = 0;
+    public int ammoMax = 1;
+    public void Use() {
+        ammo--;
 
-    
+    }
+    public float GetDurability() {
+        return ammo / (float) ammoMax;
+    }
+
     /// <summary>
     /// This function creates a card with a specific effect
     /// This is for creating authored enemies and testing projectiles
