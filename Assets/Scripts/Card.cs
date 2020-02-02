@@ -44,16 +44,18 @@ public class Card {
         Effect effect = (Effect)possibleEffects.GetValue(UnityEngine.Random.Range(1, possibleEffects.Length));
 
         int ammo = UnityEngine.Random.Range(2, 10);
-
+        int value = UnityEngine.Random.Range(1, 10);
 
         return new Card() {
             effect = effect,
             ammo = ammo,
             ammoMax = ammo,
+            numberValue = value
         };
     }
 
     public Effect effect = Effect.None;
+    public int numberValue;
     public int ammo = 0;
     public int ammoMax = 1;
     public void Use() {
@@ -85,10 +87,22 @@ public class Card {
     /// </summary>
     /// <param name="projectile">The projectile to modify.</param>
     public void ModifyProjectile(Projectile projectile) {
+
+        projectile.effects.Add(new Projectile.Effect() {
+            effect = effect,
+            amount = numberValue,
+        });
+
         switch (effect) {
             case Effect.None:
+                // nuffin
                 break;
             case Effect.ProjectileDamage2X:
+            case Effect.ProjectileExplosive:
+            case Effect.ProjectileVampire:
+            case Effect.ProjectileCharm:
+            case Effect.ProjectileIce:
+                // applied to target in Projectile.CrashedIntoPawn()
                 break;
             case Effect.ProjectileFire:
                 break;
@@ -96,11 +110,8 @@ public class Card {
                 break;
             case Effect.ProjectileLightning:
                 break;
-            case Effect.ProjectileIce:
-                break;
-            case Effect.ProjectileExplosive:
-                break;
             case Effect.ProjectileHoming:
+                projectile.MakeHoming();
                 break;
             case Effect.ProjectileHitScan:
                 break;
@@ -111,10 +122,6 @@ public class Card {
             case Effect.ProjectileRapidFire:
                 break;
             case Effect.ProjectileHuge:
-                break;
-            case Effect.ProjectileVampire:
-                break;
-            case Effect.ProjectileCharm:
                 break;
             case Effect.PawnDefense2X:
                 break;

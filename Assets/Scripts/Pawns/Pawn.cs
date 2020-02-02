@@ -43,8 +43,17 @@ public class Pawn : MonoBehaviour
         lookDirection = Quaternion.Euler(0, angle, 0);
     }
     public void Attack() {
+
+        int projectileCount = CurrentTome().HowManyProjectiles();
+
         CurrentTome().Use();
-        ShootProjectile();
+
+        float degreesBetweenBullets = 10;
+        float offset = (projectileCount - 1)* degreesBetweenBullets / 2;
+
+        for (int i = 0; i < projectileCount; i++) {
+            ShootProjectile(-offset + degreesBetweenBullets * i);
+        }
     }
     public void NextTome() {
         if (++currentTomeIndex >= tomes.Count) currentTomeIndex = 0;
@@ -76,12 +85,14 @@ public class Pawn : MonoBehaviour
         print("Ouch! My health is now just:" + health);
     }
    
-    void ShootProjectile() {
+    void ShootProjectile(float yaw) {
 
         Tome tome = CurrentTome();
 
-        Projectile projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
-        projectile.Init(this.gameObject);
+        yaw += transform.rotation.eulerAngles.y;
+
+        Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, yaw, 0));
+        projectile.Init(gameObject);
 
         tome.ModifyProjectile(projectile);
     }
