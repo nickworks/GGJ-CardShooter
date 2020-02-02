@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : Controller {
     /// <summary>
@@ -51,6 +52,10 @@ public class PlayerController : Controller {
             //PopCard();
         }
 
+        if(pawn.health <= 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     /// <summary>
