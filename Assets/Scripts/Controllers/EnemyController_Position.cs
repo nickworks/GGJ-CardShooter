@@ -100,7 +100,7 @@ public class EnemyController_Position : Controller
     Vector2 moveDir;
 
     public PickupCard cardDrop;
-    
+    public ParticleDespawner particle;
 
     // Start is called before the first frame update
     void Start()
@@ -149,6 +149,9 @@ public class EnemyController_Position : Controller
                     transform.position.y,
                     transform.position.z + Random.Range(-.2f, .2f));
             }
+
+            ParticleDespawner newPart = Instantiate(particle);
+            newPart.transform.position = transform.position;
 
             // Die
             GameObject.Destroy(gameObject);

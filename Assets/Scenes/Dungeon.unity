@@ -152,6 +152,7 @@ MonoBehaviour:
   actionSpeed: 4
   wanderSpeed: 1
   cardDrop: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!114 &33029785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +360,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad4401c9dfe43b048820c3ff5a28e881, type: 3}
+--- !u!1001 &625479335
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 908786970743492393, guid: f785e7653558c774ea19690c2b633ab1,
+        type: 3}
+      propertyPath: m_Name
+      value: Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 908786970743492398, guid: f785e7653558c774ea19690c2b633ab1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 908786970743492398, guid: f785e7653558c774ea19690c2b633ab1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 908786970743492398, guid: f785e7653558c774ea19690c2b633ab1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -37.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 908786970743492398, guid: f785e7653558c774ea19690c2b633ab1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 908786970743492398, guid: f785e7653558c774ea19690c2b633ab1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 908786970743492398, guid: f785e7653558c774ea19690c2b633ab1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 908786970743492398, guid: f785e7653558c774ea19690c2b633ab1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 908786970743492398, guid: f785e7653558c774ea19690c2b633ab1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 908786970743492398, guid: f785e7653558c774ea19690c2b633ab1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 908786970743492398, guid: f785e7653558c774ea19690c2b633ab1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 908786970743492398, guid: f785e7653558c774ea19690c2b633ab1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f785e7653558c774ea19690c2b633ab1, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +567,7 @@ MonoBehaviour:
   actionSpeed: 4
   wanderSpeed: 1
   cardDrop: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!1 &748180533
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,6 +880,7 @@ MonoBehaviour:
   actionSpeed: 4
   wanderSpeed: 1
   cardDrop: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!114 &1202186288
 MonoBehaviour:
   m_ObjectHideFlags: 0
