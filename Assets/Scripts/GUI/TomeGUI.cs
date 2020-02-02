@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ public class TomeGUI : MonoBehaviour
     Image img;
     public Sprite bookClosed;
     public Sprite bookOpen;
+    public TextMeshProUGUI txtCards;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,7 @@ public class TomeGUI : MonoBehaviour
     void Update()
     {
         EasePositionRotationScale();
+        txtCards.text = $"{tome.cards.Count} / {tome.cardCap}";
     }
     private void EasePositionRotationScale() {
         float percentRemainingAfter1Second = .001f;

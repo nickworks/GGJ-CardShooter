@@ -153,7 +153,7 @@ public class CardManager : MonoBehaviour
         }
     }
     void PositionCardsMini() {
-        float y = 150;
+        float y = 200;
         float dy = 75;
         for (int i = 0; i < cards.Count; i++) {
             Vector3 pos = new Vector2(0, y + dy * i);
