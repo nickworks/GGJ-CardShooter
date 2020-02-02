@@ -10,11 +10,13 @@ public class CardGUI : MonoBehaviour {
     public struct EffectSprites {
         public Card.Effect cardEffect;
         public Sprite sprite;
+        public Color color;
     }
 
     public EffectSprites[] spritesForCardEffects;
 
     public Image imgBackSprite;
+    public Image imgBackground;
 
     Quaternion targetRotation;
     Vector2 targetPosition;
@@ -40,6 +42,7 @@ public class CardGUI : MonoBehaviour {
         foreach(EffectSprites sprite in spritesForCardEffects) {
             if(sprite.cardEffect == card.effect) {
                 imgBackSprite.sprite = sprite.sprite;
+                imgBackground.color = sprite.color;
                 break;
             }
         }
