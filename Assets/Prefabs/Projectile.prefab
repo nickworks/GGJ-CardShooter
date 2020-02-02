@@ -50,6 +50,8 @@ MonoBehaviour:
   speed: 15
   lifespan: 1
   effects: []
+  prefabExplosion: {fileID: 908786970743492393, guid: f0f09b3b06b5d124cb2df1f2ff7a28c4,
+    type: 3}
 --- !u!108 &7613360661015711231
 Light:
   m_ObjectHideFlags: 0
