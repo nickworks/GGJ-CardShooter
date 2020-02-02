@@ -87,7 +87,7 @@ public class Tome
         }
         return false;
     }
-    int TotalValueOf(Card.Effect effect) {
+    public int TotalValueOf(Card.Effect effect) {
         int total = 0;
         foreach (Card card in cards) {
             if (card.effect == effect) total += card.numberValue;
