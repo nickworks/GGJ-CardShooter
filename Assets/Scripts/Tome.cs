@@ -58,17 +58,22 @@ public class Tome
         }
         return false;
     }
-
+    public int HowManyProjectiles() {
+        int total = 1;
+        foreach (Card card in cards) {
+            if (card.effect == Card.Effect.ProjectileSpread) total += card.numberValue;
+        }
+        return total;
+    }
     /// <summary>
     /// Apply the effects of each card to a projectile.
     /// </summary>
     /// <param name="projectile">The projectile to modify.</param>
     public void ModifyProjectile(Projectile projectile) {
 
-        projectile.damage = projectile.baseDamage = tomeBaseDamage;
+        projectile.Init(tomeBaseDamage);
 
-
-        foreach(Card card in cards) {
+        foreach (Card card in cards) {
             card.ModifyProjectile(projectile);
         }
     }

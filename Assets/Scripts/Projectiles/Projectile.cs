@@ -4,30 +4,37 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [System.Serializable]
+    public struct Effect {
+        public Card.Effect effect;
+        public int amount;
+    }
+
     public float speed = 10;
     public float lifespan = 2;
 
     /// <summary>
     /// The damage of this projectile, before card modifications
     /// </summary>
-    public float baseDamage;
+    float baseDamage;
 
-    /// <summary>
-    /// The damage applyed to the actor hit by this projectile, after card modifications
-    /// </summary>
-    public float damage;
+    private bool sinWave;
+    private Transform homingTarget;
+
+    public List<Effect> effects = new List<Effect>();
+
 
     /// <summary>
     /// The Pawn that is responsible for the creation of this projectile
     /// </summary>
     GameObject owner;
 
-    Vector3 velocity;
+    public Vector3 velocity;
     float age = 0;
 
     void Start()
     {
-        velocity = transform.forward * speed;
+        
     }
     /// <summary>
     /// Use this to pass info from Pawn to Projectile.
@@ -35,11 +42,23 @@ public class Projectile : MonoBehaviour
     public void Init(GameObject owner) {
         this.owner = owner;
     }
-
+    public void Init(float tomeBaseDamage) {
+        baseDamage = tomeBaseDamage;
+        velocity = transform.forward * speed;
+    }
+    
     // Update is called once per frame
     void Update()
     {
         if (Game.isPaused) return;
+
+
+        if (homingTarget) {
+            Vector3 vectorToTarget = (homingTarget.position - transform.position).normalized * 10;
+            Vector3 force = (vectorToTarget - velocity);
+            force = force.normalized * .2f;
+            velocity += force;
+        }
 
         transform.position += velocity * Time.deltaTime;
         age += Time.deltaTime;
@@ -70,17 +89,38 @@ public class Projectile : MonoBehaviour
         if (other.gameObject != owner) {
             //print("hit");
             Pawn target = other.gameObject.GetComponent<Pawn>();
-            if (target != null) {
-                target.ApplyDamage(damage);
-            }
+            if (target != null) CrashedIntoPawn(target);
 
             HandleDeath();
         }
+    }
+    void CrashedIntoPawn(Pawn p) {
+
+        float damage = baseDamage;
+
+
+        foreach(Effect card in effects) {
+
+            if (card.effect == Card.Effect.ProjectileDamage2X) baseDamage *= card.amount;
+
+        }
+
+        // apply other effects to the hit pawn
+        p.ApplyDamage(damage);
     }
 
 
     void HandleDeath() {
 
         Destroy(gameObject);
+    }
+
+    public void MakeHoming() {
+        print("I home?");
+
+        Pawn[] targets = GameObject.FindObjectsOfType<Pawn>();
+
+        homingTarget = targets[Random.Range(0, targets.Length)].transform;
+        velocity = Vector3.up * speed * .8f;
     }
 }

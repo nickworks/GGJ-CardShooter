@@ -123,7 +123,10 @@ public class CardManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             ChangeState((state == State.Inspect) ? State.Mini : State.Inspect);
 
-        if (Input.GetKeyDown(KeyCode.KeypadPlus)) AddCard(Card.Random());
+        if (Input.GetKeyDown(KeyCode.KeypadPlus)) {
+
+            AddCard(Card.Random());
+        }
         if (Input.GetKeyDown(KeyCode.KeypadMinus)) PopCard();
 
 
