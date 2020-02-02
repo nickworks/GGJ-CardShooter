@@ -257,9 +257,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   rotationDampening: 0.05
-  health: 100
+  health: 5
   projectilePrefab: {fileID: 1232235381016309722, guid: 5aa9cad8f82f8c145bd517e3f0d887ca,
     type: 3}
+  wantsToAttack: 0
   currentRoom: {fileID: 0}
 --- !u!143 &4871233310314576464
 CharacterController:
@@ -348,6 +349,8 @@ MonoBehaviour:
   maxTimeTillRecalcVariance: 3
   actionSpeed: 4
   wanderSpeed: 1
+  cardDrop: {fileID: 8357777983876861304, guid: 6f4eb56bfe81932418ab486e874dbb7d,
+    type: 3}
 --- !u!1 &4871233311504124062
 GameObject:
   m_ObjectHideFlags: 0

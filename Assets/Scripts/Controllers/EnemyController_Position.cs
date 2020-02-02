@@ -98,6 +98,8 @@ public class EnemyController_Position : Controller
     /// The current direction of movement.
     /// </summary>
     Vector2 moveDir;
+
+    public PickupCard cardDrop;
     
 
     // Start is called before the first frame update
@@ -125,6 +127,31 @@ public class EnemyController_Position : Controller
         if(timeTillRecalc < 0)
         {
             calcNewVariance();
+        }
+
+        if(pawn.health <= 0)
+        {
+            /// Make a card
+            /// 
+            PickupCard card1 = Instantiate(cardDrop);
+            cardDrop.transform.position = transform.position;
+            if(Random.Range(0f, 1f) > .9f)
+            {
+                PickupCard card2 = Instantiate(cardDrop);
+                PickupCard card3 = Instantiate(cardDrop);
+
+                card2.transform.position = new Vector3(
+                    transform.position.x + Random.Range(-.5f, .5f),
+                    transform.position.y,
+                    transform.position.z + Random.Range(-.5f, .5f));
+                card3.transform.position = new Vector3(
+                    transform.position.x + Random.Range(-.2f, .2f),
+                    transform.position.y,
+                    transform.position.z + Random.Range(-.2f, .2f));
+            }
+
+            // Die
+            GameObject.Destroy(gameObject);
         }
     }
 
