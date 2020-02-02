@@ -116,7 +116,7 @@ public class Projectile : MonoBehaviour
     }
 
     public void MakeHoming() {
-        print("I home?");
+        //print("I home?");
 
         Pawn[] targets = GameObject.FindObjectsOfType<Pawn>();
 

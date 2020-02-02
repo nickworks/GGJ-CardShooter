@@ -179,27 +179,37 @@ public class CardManager : MonoBehaviour
         PositionCards();
     }
 
-    void Update()
-    {
+    void Update() {
         if (Input.GetKeyDown(KeyCode.Space))
             ChangeState((state == State.Inspect) ? State.Mini : State.Inspect);
 
-        if (Input.GetKeyDown(KeyCode.KeypadPlus)) {
+        CheckForUpdatesToTome();
 
-            AddCard(Card.Random());
-        }
-        if (Input.GetKeyDown(KeyCode.KeypadMinus)) PopCard();
-
-        /*
-        // remove all cards from tome??
-        for (int i = currentTome.cards.Count; i >= 0; i--) {
-            LoseCardAt(i);
-        }
-        /**/
 
         float a = bg.color.a;
         if (a < 0.6f && state == State.Inspect) a += 2 * Time.deltaTime;
         if (a > 0.0f && state == State.Mini) a -= 2 * Time.deltaTime;
         bg.color = new Color(0, 0, 0, a);
+    }
+
+    private void CheckForUpdatesToTome() {
+        if (currentTome.updatedSinceLastRendered) {
+
+            for (int i = currentTome.cards.Count - 1; i >= 0; i--) {
+                bool cardAlreadyExists = false;
+                foreach (CardGUI card in cards) {
+                    if (card.Matches(currentTome.cards[i])){
+                        cardAlreadyExists = true;
+                        break;
+                    }
+                }
+                if (!cardAlreadyExists) {
+                    AddCard(currentTome.cards[i]);
+                }
+            }
+            currentTome.updatedSinceLastRendered = false;
+        }
+
+        // TODO: also check for cards that were removed...
     }
 }

@@ -75,6 +75,10 @@ public class Pawn : MonoBehaviour
         currentTomeIndex = tomes.Count;
         tomes.Add(tome);
     }
+
+    public void PickupCard(Card card) {
+        CurrentTome().AddCard(card);
+    }
     #endregion
 
     //this is currently called by the projectile hitting this object. I do not know if that is consistent with the player controller design pattern

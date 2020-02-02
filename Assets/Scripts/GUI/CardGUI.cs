@@ -45,6 +45,9 @@ public class CardGUI : MonoBehaviour {
         rt = transform as RectTransform;
         MakeAllTheTextsOneSided(); // oof
     }
+    public bool Matches(Card card) {
+        return (this.card == card);
+    }
     void MakeAllTheTextsOneSided() {
         // the best I can do right now
         TextMeshProUGUI[] txts = GetComponentsInChildren<TextMeshProUGUI>();

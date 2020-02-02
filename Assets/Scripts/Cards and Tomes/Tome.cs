@@ -38,6 +38,15 @@ public class Tome
     /// </summary>
     public List<Card> cards = new List<Card>();
 
+    public bool updatedSinceLastRendered = true;
+
+    public void AddCard(Card card) {
+        // add card:
+        cards.Add(card);
+
+        // mark tome as "dirty":
+        updatedSinceLastRendered = true;
+    }
     public void Use() {
         Card card = TopCard();
         if(card != null) card.Use();

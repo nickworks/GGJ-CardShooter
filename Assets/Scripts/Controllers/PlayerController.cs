@@ -43,6 +43,12 @@ public class PlayerController : Controller {
     void Update() {
         if (Game.isPaused) return;
         pawn.Move(moveAxis);
+
+        if (Input.GetKeyDown(KeyCode.KeypadPlus)) {
+            pawn.PickupCard(Card.Random());
+        }
+        //if (Input.GetKeyDown(KeyCode.KeypadMinus)) PopCard();
+
     }
 
     /// <summary>
