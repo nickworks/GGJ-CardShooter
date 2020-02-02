@@ -458,9 +458,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba5e2120fd769a9449bd5fdbed992f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerSet: 3
   rotate: 0
-  anglMod: 25
+  minShotDelay: 0.25
+  maxShotDelay: 1.5
 --- !u!114 &717600225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,20 +967,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectileTestPawn
       objectReference: {fileID: 0}
+    - target: {fileID: 4871233310314576470, guid: d7647052bd1fe6f41931084444ee03b1,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 4871233310314576471, guid: d7647052bd1fe6f41931084444ee03b1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4871233310314576471, guid: d7647052bd1fe6f41931084444ee03b1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.11
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4871233310314576471, guid: d7647052bd1fe6f41931084444ee03b1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4871233310314576471, guid: d7647052bd1fe6f41931084444ee03b1,
         type: 3}
@@ -1041,6 +1046,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814942318915859469, guid: d7647052bd1fe6f41931084444ee03b1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.06370354
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7647052bd1fe6f41931084444ee03b1, type: 3}
