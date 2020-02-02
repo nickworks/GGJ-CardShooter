@@ -20,10 +20,11 @@ public class Projectile : MonoBehaviour
 
     private bool sinWave;
     private Transform homingTarget;
+    private float homingQuality = 0;
 
     public List<Effect> effects = new List<Effect>();
 
-    private float timeUntilShake = 0;
+    private float timeUntilShake = .25f;
 
     /// <summary>
     /// The Pawn that is responsible for the creation of this projectile
@@ -48,11 +49,19 @@ public class Projectile : MonoBehaviour
     }
     
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if (Game.isPaused) return;
 
+        DoHoming();
 
+        transform.position += transform.forward * speed * Time.deltaTime;
+        age += Time.deltaTime;
+        if (age > lifespan) {
+            HandleDeath();
+        }
+    }
+
+    private void DoHoming() {
         if (homingTarget) {
 
             Vector3 vectorToTarget = (homingTarget.position - transform.position).normalized;
@@ -60,21 +69,19 @@ public class Projectile : MonoBehaviour
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, goal, 360 * Time.deltaTime);
 
-            if (timeUntilShake <= 0) {
-                Quaternion rand = Quaternion.FromToRotation(Vector3.forward, Random.onUnitSphere);
-                transform.rotation *= rand;
-                timeUntilShake = .1f;
+            if (timeUntilShake > 0) {
+                timeUntilShake -= Time.deltaTime;
+
+            } else {
+                if (age < lifespan / 4) {
+
+                    Quaternion rand = Quaternion.FromToRotation(Vector3.forward, Random.onUnitSphere);
+                    float p = Random.Range(.01f, .05f);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, rand, p);
+
+                    timeUntilShake = (homingQuality / 20) * .01f;
+                }
             }
-
-            //Vector3 force = (vectorToTarget - velocity);
-            //force = force.normalized * .2f;
-            //velocity += force;
-        }
-
-        transform.position += transform.forward * speed * Time.deltaTime;
-        age += Time.deltaTime;
-        if(age > lifespan) {
-            HandleDeath();
         }
     }
 
@@ -96,14 +103,17 @@ public class Projectile : MonoBehaviour
     /// <param name="other">the "other" colider this game object has impacted</param>
     private void OnTriggerEnter(Collider other)
     {
-       //print("Collision " + owner);
-        if (other.gameObject != owner) {
-            //print("hit");
-            Pawn target = other.gameObject.GetComponent<Pawn>();
-            if (target != null) CrashedIntoPawn(target);
+        // don't collide with owner pawn:
+        if (other.gameObject == owner) return;
 
-            HandleDeath();
-        }
+        // don't collide with other projectiles:
+        if (other.GetComponent<Projectile>() != null) return;
+
+        // collide with pawns:
+        Pawn target = other.gameObject.GetComponent<Pawn>();
+        if (target != null) CrashedIntoPawn(target);
+
+        HandleDeath();
     }
     void CrashedIntoPawn(Pawn p) {
 
@@ -126,15 +136,21 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void MakeHoming() {
-        //print("I home?");
+    public void MakeHoming(float homingQuality) {
 
         Pawn[] targets = GameObject.FindObjectsOfType<Pawn>();
 
-        homingTarget = targets[Random.Range(0, targets.Length)].transform;
+        // pick target at random:
+        if (targets.Length <= 1) return;
+        
+        while (homingTarget == owner.transform || homingTarget == null) {
+            homingTarget = targets[Random.Range(0, targets.Length)].transform;
+        }
+
         transform.rotation = Quaternion.FromToRotation(Vector3.forward, Vector3.up);// velocity = Vector3.up * speed * .8f;
-        lifespan = 4;
+        lifespan = 5;
         speed = 10;
+        this.homingQuality = homingQuality;
     }
     public void MakeBig(int cardValue) {
         float currentScale = transform.localScale.x;

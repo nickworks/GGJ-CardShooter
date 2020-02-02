@@ -108,10 +108,8 @@ public class Card {
                 break;
             case Effect.ProjectileSpread:
             case Effect.ProjectileRapidFire:
-                // this effect is applied in Pawn.Attack()
-                break;
             case Effect.ProjectileHoming:
-                projectile.MakeHoming();
+                // this effect is applied in Pawn.Attack()
                 break;
             case Effect.ProjectileHuge:
                 projectile.MakeBig(numberValue);
