@@ -143,6 +143,10 @@ public class Pawn : MonoBehaviour
         projectile.Init(gameObject);
 
         tome.ModifyProjectile(projectile);
+
+        float y = projectile.transform.localScale.x * .1f;
+
+        projectile.transform.position += Vector3.up * y;
         return projectile;
     }
     
