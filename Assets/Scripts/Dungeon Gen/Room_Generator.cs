@@ -16,6 +16,10 @@ public class Room_Generator : MonoBehaviour
 
     public List<GameObject> rooms;
     public GameObject hiddenWalls;
+    public Room_Volume volume;
+
+    Pawn player;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +38,7 @@ public class Room_Generator : MonoBehaviour
     void equipSensors()
     {
         nSensor.door = nDoor;
+        sSensor.offset = 33;
         sSensor.door = sDoor;
         eSensor.door = eDoor;
         wSensor.door = wDoor;
@@ -42,6 +47,24 @@ public class Room_Generator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(player == null)
+        {
+            findPlayer();
+            return;
+        }
+
+        bool isPlayerInRoom = (player.currentRoom == volume);
         
+        hiddenWalls.SetActive(isPlayerInRoom);
+        nDoor.SetActive(isPlayerInRoom);
+        sDoor.SetActive(isPlayerInRoom);
+        eDoor.SetActive(isPlayerInRoom);
+        wDoor.SetActive(isPlayerInRoom);
+        
+    }
+
+    void findPlayer()
+    {
+        player = GameObject.FindObjectOfType<PlayerController>().GetPawn();
     }
 }
