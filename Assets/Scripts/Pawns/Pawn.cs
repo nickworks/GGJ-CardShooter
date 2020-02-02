@@ -73,12 +73,14 @@ public class Pawn : MonoBehaviour
 
         if (cooldownBeforeAttacking > 0) return;
 
-        int projectileCount = CurrentTome().HowManyProjectiles();
-        int homingQuality = CurrentTome().TotalValueOf(Card.Effect.ProjectileHoming);
+        Tome tome = CurrentTome();
+        tome.Use();
 
-        cooldownBeforeAttacking = CurrentTome().GetDelayBetweenShots();
+        int projectileCount = tome.HowManyProjectiles();
+        int homingQuality = tome.TotalValueOf(Card.Effect.ProjectileHoming);
 
-        CurrentTome().Use();
+        cooldownBeforeAttacking = tome.GetDelayBetweenShots();
+
 
         float degreesBetweenBullets = 10;
         float offset = (projectileCount - 1)* degreesBetweenBullets / 2;
@@ -86,6 +88,7 @@ public class Pawn : MonoBehaviour
         for (int i = 0; i < projectileCount; i++) {
             Projectile p = ShootProjectile(-offset + degreesBetweenBullets * i);
             if(homingQuality > 0) p.MakeHoming(homingQuality);
+            p.RandomRotate(0, 1 - tome.tomeBaseAccuracy);
         }
     }
     public void StartAttack() {

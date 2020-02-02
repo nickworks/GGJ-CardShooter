@@ -14,12 +14,16 @@ public class Tome
     /// The number of cards this tome can hold.
     /// </summary>
     public int cardCap = 3;
+
+    public float tomeBaseAccuracy = .5f;
     
     public static Tome Random() {
         Tome tome = new Tome();
 
         tome.cardCap = UnityEngine.Random.Range(2, 6);
         tome.tomeBaseDamage = UnityEngine.Random.Range(1, 8);
+        tome.tomeBaseAccuracy =
+            UnityEngine.Random.Range(.25f, .5f) + UnityEngine.Random.Range(.25f, .5f);
 
         tome.cards.Add(Card.Random());
         tome.cards.Add(Card.Random());
