@@ -351,6 +351,8 @@ MonoBehaviour:
   wanderSpeed: 1
   cardDrop: {fileID: 8357777983876861304, guid: 6f4eb56bfe81932418ab486e874dbb7d,
     type: 3}
+  particle: {fileID: 3915029020701031241, guid: f785e7653558c774ea19690c2b633ab1,
+    type: 3}
 --- !u!1 &4871233311504124062
 GameObject:
   m_ObjectHideFlags: 0
