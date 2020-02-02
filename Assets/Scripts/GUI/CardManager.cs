@@ -14,8 +14,8 @@ public class CardManager : MonoBehaviour
     public CardGUI cardGUIPrefab;
     public TomeGUI tomeGUIPrefab;
 
-    public float cardScaleSmall = .01f;
-    public float cardScaleBig = .1f;
+    public float cardScaleSmall = .25f;
+    public float cardScaleBig = .35f;
 
     /// <summary>
     /// The current state of the gui.
@@ -68,13 +68,15 @@ public class CardManager : MonoBehaviour
         }
         currentTomeIndex = tomes.IndexOf(tome);
 
-        float dx = 130;
+        float dx = 70;
         float x = -(this.tomes.Count - 1) * dx / 2;
         for (int i = 0; i < this.tomes.Count; i++) {
             TomeGUI t = this.tomes[i];
             bool isCurrent = (i == currentTomeIndex) ;
 
-            t.AnimateTo(new Vector3(x + dx * i, 0), isCurrent);
+            int dif = currentTomeIndex - i;
+
+            t.AnimateTo(new Vector3(-dx * dif, 0), isCurrent);
 
         }
 
@@ -151,8 +153,8 @@ public class CardManager : MonoBehaviour
         }
     }
     void PositionCardsMini() {
-        float y = 100;
-        float dy = 50;
+        float y = 150;
+        float dy = 75;
         for (int i = 0; i < cards.Count; i++) {
             Vector3 pos = new Vector2(0, y + dy * i);
             Quaternion rot = Quaternion.Euler(0, 180, 90);
@@ -183,16 +185,17 @@ public class CardManager : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space))
-            ChangeState((state == State.Inspect) ? State.Mini : State.Inspect);
 
         CheckForUpdatesToTome();
-
 
         float a = bg.color.a;
         if (a < 0.6f && state == State.Inspect) a += 2 * Time.deltaTime;
         if (a > 0.0f && state == State.Mini) a -= 2 * Time.deltaTime;
         bg.color = new Color(0, 0, 0, a);
+    }
+
+    public void TogglePause() {
+        ChangeState((state == State.Inspect) ? State.Mini : State.Inspect);
     }
 
     private void CheckForUpdatesToTome() {

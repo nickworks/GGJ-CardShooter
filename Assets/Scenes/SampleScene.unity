@@ -151,6 +151,7 @@ MonoBehaviour:
   maxTimeTillRecalcVariance: 3
   actionSpeed: 4
   wanderSpeed: 1
+  cardDrop: {fileID: 0}
 --- !u!114 &33029785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,66 +248,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 12730887097347637, guid: ad4401c9dfe43b048820c3ff5a28e881,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 12730887097347637, guid: ad4401c9dfe43b048820c3ff5a28e881,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 12730887097347637, guid: ad4401c9dfe43b048820c3ff5a28e881,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 12730887097347637, guid: ad4401c9dfe43b048820c3ff5a28e881,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 12730887097347637, guid: ad4401c9dfe43b048820c3ff5a28e881,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1978247001}
-    - target: {fileID: 12730887097347637, guid: ad4401c9dfe43b048820c3ff5a28e881,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnPrevTome
-      objectReference: {fileID: 0}
-    - target: {fileID: 12730887097347637, guid: ad4401c9dfe43b048820c3ff5a28e881,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 12730887097347637, guid: ad4401c9dfe43b048820c3ff5a28e881,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 12730887097347637, guid: ad4401c9dfe43b048820c3ff5a28e881,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 12730887097347637, guid: ad4401c9dfe43b048820c3ff5a28e881,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1978247001}
-    - target: {fileID: 12730887097347637, guid: ad4401c9dfe43b048820c3ff5a28e881,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnNextTome
-      objectReference: {fileID: 0}
-    - target: {fileID: 12730887097347637, guid: ad4401c9dfe43b048820c3ff5a28e881,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 12730887097347640, guid: ad4401c9dfe43b048820c3ff5a28e881,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -575,6 +516,7 @@ MonoBehaviour:
   maxTimeTillRecalcVariance: 3
   actionSpeed: 4
   wanderSpeed: 1
+  cardDrop: {fileID: 0}
 --- !u!4 &845580379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 12730887097347640, guid: ad4401c9dfe43b048820c3ff5a28e881,
@@ -807,6 +749,7 @@ MonoBehaviour:
   maxTimeTillRecalcVariance: 3
   actionSpeed: 4
   wanderSpeed: 1
+  cardDrop: {fileID: 0}
 --- !u!114 &1202186288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,18 +941,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1978247001 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 12730887097347642, guid: ad4401c9dfe43b048820c3ff5a28e881,
-    type: 3}
-  m_PrefabInstance: {fileID: 454835666}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e2f494215042cf409b31bd828499e16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2025066295
 GameObject:
   m_ObjectHideFlags: 0

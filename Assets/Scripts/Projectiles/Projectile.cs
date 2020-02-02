@@ -130,21 +130,39 @@ public class Projectile : MonoBehaviour
 
         float damage = baseDamage;
 
-
         foreach(Effect card in effects) {
 
             if (card.effect == Card.Effect.ProjectileDamage2X) baseDamage *= card.amount;
-
         }
 
         // apply other effects to the hit pawn
         p.ApplyDamage(damage);
+        
     }
 
 
     void HandleDeath() {
 
+        float damage = baseDamage;
+        float explosionSize = 0;
+
+        foreach (Effect card in effects) {
+
+            if (card.effect == Card.Effect.ProjectileDamage2X) baseDamage *= card.amount;
+            if (card.effect == Card.Effect.ProjectileExplosive) explosionSize += card.amount;
+        }
+        if (explosionSize > 0) {
+            Pawn[] pawns = FindObjectsOfType<Pawn>();
+            foreach (Pawn pawn in pawns) {
+                float d2 = (pawn.transform.position - transform.position).sqrMagnitude;
+                if (d2 < explosionSize * explosionSize) {
+                    pawn.ApplyDamage(damage);
+                }
+            }
+        }
+
         Destroy(gameObject);
+
     }
 
     public void MakeHoming(float homingQuality) {
