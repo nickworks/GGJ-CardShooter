@@ -17,6 +17,8 @@ public class Pawn : MonoBehaviour
     List<Tome> tomes = new List<Tome>();
     int currentTomeIndex = 0;
 
+    public Room_Volume currentRoom;
+
 
 
     void Start()
@@ -96,4 +98,5 @@ public class Pawn : MonoBehaviour
 
         tome.ModifyProjectile(projectile);
     }
+    
 }

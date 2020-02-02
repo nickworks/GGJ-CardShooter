@@ -36,7 +36,7 @@ public class EnemyController_AimShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shotDelay = 2 + 4 * Random.Range(minShotDelay, maxShotDelay);
+        shotDelay = 2 * Random.Range(minShotDelay, maxShotDelay);
 
         pawn = GetComponent<Pawn>();
         pawn.PickupTome(Tome.Authored(new Card.Effect[] { Card.Effect.None }));
@@ -48,6 +48,10 @@ public class EnemyController_AimShoot : MonoBehaviour
     void Update()
     {
         aimAtPlayer();
+        if (pawn.currentRoom != player.currentRoom)
+        {
+            return;
+        }
 
         if (shotDelay <= 0)
         {

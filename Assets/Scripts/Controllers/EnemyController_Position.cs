@@ -98,6 +98,7 @@ public class EnemyController_Position : Controller
     /// The current direction of movement.
     /// </summary>
     Vector2 moveDir;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -133,6 +134,10 @@ public class EnemyController_Position : Controller
         {
             findPlayer();
 
+            return;
+        }
+        if(pawn.currentRoom != player.currentRoom)
+        {
             return;
         }
         Vector3 rawDirToPlayer = (player.transform.position - pawn.transform.position);
@@ -188,5 +193,5 @@ public class EnemyController_Position : Controller
 
         timeTillRecalc = Random.Range(minTimeTillRecalcVariance, maxTimeTillRecalcVariance);
     }
-    
+
 }

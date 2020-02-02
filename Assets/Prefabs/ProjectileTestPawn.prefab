@@ -219,6 +219,8 @@ GameObject:
   - component: {fileID: 4871233310314576464}
   - component: {fileID: 4879406448031760029}
   - component: {fileID: 5619513000237630744}
+  - component: {fileID: -2869073762980583642}
+  - component: {fileID: -397980862765375399}
   m_Layer: 0
   m_Name: ProjectileTestPawn
   m_TagString: Untagged
@@ -254,9 +256,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  rotationDampening: 0.05
   health: 100
   projectilePrefab: {fileID: 1232235381016309722, guid: 5aa9cad8f82f8c145bd517e3f0d887ca,
     type: 3}
+  currentRoom: {fileID: 0}
 --- !u!143 &4871233310314576464
 CharacterController:
   m_ObjectHideFlags: 0
@@ -282,7 +286,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4871233310314576467}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 209eecbd65629cc498b816c62caf0cde, type: 3}
   m_Name: 
@@ -297,7 +301,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4871233310314576467}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 209eecbd65629cc498b816c62caf0cde, type: 3}
   m_Name: 
@@ -305,6 +309,45 @@ MonoBehaviour:
   timerSet: 3
   rotate: 0
   anglMod: 25
+--- !u!114 &-2869073762980583642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4871233310314576467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5e2120fd769a9449bd5fdbed992f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotate: 0
+  minShotDelay: 0.25
+  maxShotDelay: 1.5
+--- !u!114 &-397980862765375399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4871233310314576467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e923da60393257549a2b1e0c4852cebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTargetDist: 3
+  maxTargetDist: 4
+  minComfortZone: 0.5
+  maxComfortZone: 1.5
+  minApproachAngleVariance: 15
+  maxApproachAngleVariance: 30
+  minRetreatAngleVariance: 45
+  maxRetreatAngleVariance: 90
+  minTimeTillRecalcVariance: 1
+  maxTimeTillRecalcVariance: 3
+  actionSpeed: 4
+  wanderSpeed: 1
 --- !u!1 &4871233311504124062
 GameObject:
   m_ObjectHideFlags: 0
