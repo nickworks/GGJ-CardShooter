@@ -183,16 +183,17 @@ public class CardManager : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space))
-            ChangeState((state == State.Inspect) ? State.Mini : State.Inspect);
 
         CheckForUpdatesToTome();
-
 
         float a = bg.color.a;
         if (a < 0.6f && state == State.Inspect) a += 2 * Time.deltaTime;
         if (a > 0.0f && state == State.Mini) a -= 2 * Time.deltaTime;
         bg.color = new Color(0, 0, 0, a);
+    }
+
+    public void TogglePause() {
+        ChangeState((state == State.Inspect) ? State.Mini : State.Inspect);
     }
 
     private void CheckForUpdatesToTome() {

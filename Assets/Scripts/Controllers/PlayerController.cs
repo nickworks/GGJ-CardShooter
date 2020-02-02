@@ -119,14 +119,20 @@ public class PlayerController : Controller {
     }
 
     public void OnNextTome(InputAction.CallbackContext ctxt) {
+        if (Game.isPaused) return;
         if (ctxt.phase != InputActionPhase.Started) return;
         pawn.NextTome();
         UpdateHUD(1);
     }
     public void OnPrevTome(InputAction.CallbackContext ctxt) {
+        if (Game.isPaused) return;
         if (ctxt.phase != InputActionPhase.Started) return;
         pawn.PrevTome();
         UpdateHUD(-1);
+    }
+    public void OnPause(InputAction.CallbackContext ctxt) {
+        if (ctxt.phase != InputActionPhase.Started) return;
+        gui.TogglePause();
     }
     void UpdateHUD(int shift = 0) {
         gui.SwitchTomes(pawn.tomes, pawn.CurrentTome(), shift);
